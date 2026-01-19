@@ -1,0 +1,156 @@
+.chef {
+  background-color: var(--color-dark-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.chef::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-border) 50%,
+    transparent 100%
+  );
+}
+
+.chef__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.chef__image-wrapper {
+  position: relative;
+}
+
+.chef__image-frame {
+  position: relative;
+  z-index: 2;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 3px solid var(--color-gold);
+}
+
+.chef__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.chef__image-frame:hover .chef__image {
+  transform: scale(1.05);
+}
+
+.chef__image-decoration {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: -20px;
+  bottom: -20px;
+  border: 2px solid var(--color-gold);
+  border-radius: 8px;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.chef__content {
+  padding: 20px 0;
+}
+
+.chef__title {
+  font-size: calc(28px + 1vw);
+  color: var(--color-white);
+  margin-bottom: 30px;
+  line-height: 1.2;
+}
+
+.chef__quote {
+  border-left: 3px solid var(--color-gold);
+  padding-left: 30px;
+  margin: 0 0 35px 0;
+}
+
+.chef__quote p {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--color-text-primary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.chef__info {
+  margin-bottom: 30px;
+}
+
+.chef__signature-svg {
+  width: 120px;
+  height: 40px;
+}
+
+.signature-text {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  fill: var(--color-gold);
+  font-style: italic;
+}
+
+.chef__role {
+  display: block;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .chef__grid {
+    gap: 50px;
+  }
+
+  .chef__quote p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .chef__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .chef__image-wrapper {
+    max-width: 450px;
+    margin: 0 auto;
+  }
+
+  .chef__content {
+    text-align: center;
+  }
+
+  .chef__quote {
+    border-left: none;
+    border-top: 2px solid var(--color-gold);
+    border-bottom: 2px solid var(--color-gold);
+    padding: 25px 0;
+    margin: 0 0 30px 0;
+  }
+
+  .chef__title {
+    margin-bottom: 25px;
+  }
+
+  .chef__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
