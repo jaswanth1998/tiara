@@ -17,7 +17,7 @@ function Header() {
       const currentScrollY = window.scrollY
 
       // Show header after scrolling down 100px
-      if (currentScrollY > 100) {
+      if (currentScrollY > 10) {
         setIsHidden(false)
         setIsScrolled(true)
       } else {
@@ -61,9 +61,9 @@ function Header() {
           </ul>
         </nav>
 
-        <a href="#" className="header__logo">
+        {/* <a href="#" className="header__logo">
           <svg viewBox="0 0 200 80" className="header__logo-svg">
-            {/* Decorative crown/tiara */}
+
             <g transform="translate(100, 15)">
               <path d="M-25,0 L-20,-8 L-15,0 L-10,-10 L-5,0 L0,-12 L5,0 L10,-10 L15,0 L20,-8 L25,0 L20,8 L-20,8 Z" 
                     fill="none" stroke="#B3945B" strokeWidth="1.5"/>
@@ -71,11 +71,11 @@ function Header() {
               <circle cx="-10" cy="-10" r="2" fill="#B3945B" opacity="0.7"/>
               <circle cx="10" cy="-10" r="2" fill="#B3945B" opacity="0.7"/>
             </g>
-            {/* Text */}
+ 
             <text x="100" y="48" className="logo-text" textAnchor="middle">TIARA OF PERSIA</text>
             <line x1="40" y1="55" x2="160" y2="55" stroke="#B3945B" strokeWidth="0.5" opacity="0.5"/>
           </svg>
-        </a>
+        </a> */}
 
         <div className="header__actions">
           <a href="#book" className="btn btn-primary header__cta">Book a Table</a>

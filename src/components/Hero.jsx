@@ -1,6 +1,11 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import topPartImage from '../assets/images/top-part.png'
 import './Hero.css'
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger)
 
 function Hero() {
   const heroRef = useRef(null)
@@ -45,7 +50,7 @@ function Hero() {
       )
 
       // Animate buttons with stagger
-      .fromTo('.hero__buttons .btn',
+      .fromTo('.hero__buttons',
         { opacity: 0, y: 30, scale: 0.9 },
         { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.15 },
         '-=0.4'
@@ -111,19 +116,15 @@ function Hero() {
         <div className="hero__pattern"></div>
       </div>
 
-      {/* Top decorative SVG */}
-      <div className="hero__top-decoration">
-        <img src="/src/assets/svg/top-part.svg" alt="" className="hero__top-svg" />
-      </div>
 
       <div className="hero__container">
         <div className="hero__content">
-          <span className="hero__subtitle">Welcome to Tiara of Persia</span>
+          <span className="hero__subtitle"> <img src={topPartImage} alt="Tiara decoration" className="hero__top-svg" /></span>
           <h1 className="hero__title">A Tiara of Flavors</h1>
           <p className="hero__tagline">Where Empires Feast. Together.</p>
 
           <div className="hero__buttons">
-            <a href="#book" className="btn btn-primary">Discover Your Table</a>
+            <a href="#book" className="btn btn-primary">Discover Your Table</a> 
             <a href="#menu" className="btn btn-secondary">View Our Menu</a>
           </div>
         </div>

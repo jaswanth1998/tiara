@@ -83,7 +83,6 @@
   text-transform: uppercase;
   letter-spacing: 3px;
   margin-bottom: 24px;
-  opacity: 0;
 }
 
 .hero__title {
@@ -92,7 +91,6 @@
   color: var(--color-white);
   margin-bottom: 16px;
   line-height: 1.15;
-  opacity: 0;
   letter-spacing: 1px;
 }
 
@@ -103,7 +101,6 @@
   font-weight: 300;
   color: rgba(255, 255, 255, 0.95);
   margin-bottom: 48px;
-  opacity: 0;
   letter-spacing: 0.5px;
 }
 
@@ -112,12 +109,10 @@
   gap: 20px;
   justify-content: center;
   flex-wrap: wrap;
-  opacity: 0;
 }
 
 .hero__decorative {
   margin-top: 60px;
-  opacity: 0;
 }
 
 .hero__crown {
@@ -139,7 +134,6 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   animation: fadeInUp 1s ease 1.5s forwards;
-  opacity: 0;
 }
 
 .hero__scroll-line {
@@ -173,30 +167,64 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .hero {
+    padding-top: 0;
+  }
+
+  .hero__container {
+    padding: 0 16px;
+    padding-top: calc(var(--header-height) + 20px);
+  }
+
+  .hero__content {
+    max-width: 100%;
+  }
+
+  .hero__subtitle {
+    font-size: 0.7rem;
+    margin-bottom: 16px;
+  }
+
   .hero__title {
-    font-size: calc(32px + 2vw);
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    margin-bottom: 12px;
   }
 
   .hero__tagline {
-    font-size: 1.1rem;
+    font-size: clamp(0.95rem, 3vw, 1.2rem);
+    margin-bottom: 32px;
   }
 
   .hero__buttons {
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    gap: 16px;
   }
 
   .hero__buttons .btn {
     width: 100%;
-    max-width: 280px;
+    max-width: 240px;
+    padding: 11px 24px;
+    font-size: 0.8rem;
+  }
+
+  .hero__decorative {
+    margin-top: 40px;
   }
 
   .hero__crown {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
   }
 
   .hero__scroll-indicator {
-    bottom: 20px;
+    bottom: 16px;
+    font-size: 0.65rem;
+  }
+
+  .hero__top-svg {
+    width: 70px;
+    height: 70px;
   }
 }
