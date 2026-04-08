@@ -121,3 +121,265 @@
         }
     }
 }
+
+/* ===== Premium Button Styles ===== */
+
+@layer components {
+    /* Gold gradient primary button */
+    .btn-gold {
+        @apply relative inline-flex items-center justify-center gap-2 overflow-hidden
+               rounded-full px-8 py-3.5 font-sans text-sm font-semibold uppercase tracking-widest
+               text-navy-900 transition-all duration-500 ease-out;
+        background: linear-gradient(135deg, #E8D48B, #C5A55A, #A8893E);
+        box-shadow:
+            0 4px 15px rgba(197, 165, 90, 0.3),
+            0 1px 3px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    .btn-gold::before {
+        content: '';
+        @apply absolute inset-0 opacity-0 transition-opacity duration-500;
+        background: linear-gradient(135deg, #F0E0A0, #D4BC6A, #C5A55A);
+    }
+    .btn-gold:hover::before {
+        @apply opacity-100;
+    }
+    .btn-gold:hover {
+        box-shadow:
+            0 8px 30px rgba(197, 165, 90, 0.5),
+            0 2px 8px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+    }
+    .btn-gold:active {
+        transform: translateY(0);
+        box-shadow:
+            0 2px 8px rgba(197, 165, 90, 0.3),
+            0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    .btn-gold > * {
+        @apply relative z-10;
+    }
+
+    /* Outline gold button */
+    .btn-gold-outline {
+        @apply relative inline-flex items-center justify-center gap-2 overflow-hidden
+               rounded-full border-2 border-gold-500 bg-transparent px-8 py-3
+               font-sans text-sm font-semibold uppercase tracking-widest text-gold-500
+               transition-all duration-500 ease-out;
+        box-shadow: 0 0 0 rgba(197, 165, 90, 0);
+    }
+    .btn-gold-outline::before {
+        content: '';
+        @apply absolute inset-0 scale-x-0 transition-transform duration-500 ease-out;
+        background: linear-gradient(135deg, #C5A55A, #A8893E);
+        transform-origin: left;
+    }
+    .btn-gold-outline:hover::before {
+        @apply scale-x-100;
+    }
+    .btn-gold-outline:hover {
+        @apply text-navy-900 border-gold-400;
+        box-shadow: 0 4px 20px rgba(197, 165, 90, 0.3);
+        transform: translateY(-2px);
+    }
+    .btn-gold-outline:active {
+        transform: translateY(0);
+    }
+    .btn-gold-outline > * {
+        @apply relative z-10;
+    }
+
+    /* Navy button for light sections */
+    .btn-navy {
+        @apply relative inline-flex items-center justify-center gap-2 overflow-hidden
+               rounded-full bg-navy-900 px-8 py-3.5 font-sans text-sm font-semibold
+               uppercase tracking-widest text-gold-500 transition-all duration-500 ease-out;
+        box-shadow: 0 4px 15px rgba(15, 27, 61, 0.4);
+    }
+    .btn-navy::before {
+        content: '';
+        @apply absolute inset-0 opacity-0 transition-opacity duration-500;
+        background: linear-gradient(135deg, #162550, #0F1B3D);
+    }
+    .btn-navy:hover::before {
+        @apply opacity-100;
+    }
+    .btn-navy:hover {
+        box-shadow: 0 8px 30px rgba(15, 27, 61, 0.6);
+        transform: translateY(-2px);
+    }
+    .btn-navy > * {
+        @apply relative z-10;
+    }
+}
+
+/* ===== Animations ===== */
+
+@layer utilities {
+    /* Floating animation for decorative elements */
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+    .animate-float-slow {
+        animation: float 8s ease-in-out infinite;
+    }
+    .animate-float-delay {
+        animation: float 6s ease-in-out 2s infinite;
+    }
+
+    /* Shimmer effect for gold elements */
+    .animate-shimmer {
+        animation: shimmer 3s linear infinite;
+        background-size: 200% 100%;
+    }
+
+    /* Pulse glow */
+    .animate-glow-pulse {
+        animation: glow-pulse 2s ease-in-out infinite;
+    }
+
+    /* Ken Burns for hero images */
+    .animate-ken-burns {
+        animation: ken-burns 20s ease-in-out infinite alternate;
+    }
+
+    /* Fade in up */
+    .animate-fade-in-up {
+        animation: fade-in-up 0.8s ease-out forwards;
+    }
+
+    /* Slide in from left */
+    .animate-slide-in-left {
+        animation: slide-in-left 0.8s ease-out forwards;
+    }
+
+    /* Slide in from right */
+    .animate-slide-in-right {
+        animation: slide-in-right 0.8s ease-out forwards;
+    }
+
+    /* Scale up */
+    .animate-scale-up {
+        animation: scale-up 0.6s ease-out forwards;
+    }
+
+    /* Stagger children helper */
+    .stagger-children > * {
+        opacity: 0;
+        animation: fade-in-up 0.6s ease-out forwards;
+    }
+    .stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+    .stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+    .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+    .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+    .stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+    .stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+
+    /* Parallax helper */
+    .parallax-slow {
+        will-change: transform;
+    }
+
+    /* Card hover lift */
+    .hover-lift {
+        @apply transition-all duration-500 ease-out;
+    }
+    .hover-lift:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Image zoom on hover */
+    .hover-zoom {
+        @apply overflow-hidden;
+    }
+    .hover-zoom img {
+        @apply transition-transform duration-700 ease-out;
+    }
+    .hover-zoom:hover img {
+        transform: scale(1.08);
+    }
+
+    /* Gold text gradient */
+    .text-gold-gradient {
+        background: linear-gradient(135deg, #E8D48B, #C5A55A, #E8D48B);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* No scrollbar */
+    .scrollbar-none {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .scrollbar-none::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/* Keyframes */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(197, 165, 90, 0.2); }
+    50% { box-shadow: 0 0 40px rgba(197, 165, 90, 0.4); }
+}
+
+@keyframes ken-burns {
+    0% { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.1) translate(-2%, -1%); }
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-in-left {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-in-right {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scale-up {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

@@ -1,7 +1,28 @@
 import type { GalleryImage } from '@/types'
 
 export const galleryImages: GalleryImage[] = [
-  // Food — Uber Eats professional photography
+  // ─── AI-Generated Food Photos (19 images) ──────────
+  { src: '/images/ai-food/ai-dish-01-lg.webp', alt: 'Chicken koobideh kebab with saffron rice and garnish', category: 'food' },
+  { src: '/images/ai-food/ai-dish-02-lg.webp', alt: 'Traditional doogh yogurt drink with mint', category: 'food' },
+  { src: '/images/ai-food/ai-dish-03-lg.webp', alt: 'Fesenjan walnut pomegranate stew with rice', category: 'food' },
+  { src: '/images/ai-food/ai-dish-04-lg.webp', alt: 'Gheimeh split pea stew with crispy fries', category: 'food' },
+  { src: '/images/ai-food/ai-dish-05-lg.webp', alt: 'Ghorme sabzi herb stew with saffron rice', category: 'food' },
+  { src: '/images/ai-food/ai-dish-06-lg.webp', alt: 'Grilled chicken thigh kebab with rice and condiments', category: 'food' },
+  { src: '/images/ai-food/ai-dish-07-lg.webp', alt: 'Grilled salmon kebab with herb rice and fries', category: 'food' },
+  { src: '/images/ai-food/ai-dish-08-lg.webp', alt: 'Lamb chops shishlik with saffron rice', category: 'food' },
+  { src: '/images/ai-food/ai-dish-09-lg.webp', alt: 'Traditional adas polo with fried egg and crispy onions', category: 'food' },
+  { src: '/images/ai-food/ai-dish-10-lg.webp', alt: 'Zereshk polo with saffron chicken', category: 'food' },
+  { src: '/images/ai-food/ai-dish-11-lg.webp', alt: 'Full spread of Persian dishes from above', category: 'food' },
+  { src: '/images/ai-food/ai-dish-12-lg.webp', alt: 'Saffron pistachio cake slice', category: 'food' },
+  { src: '/images/ai-food/ai-dish-13-lg.webp', alt: 'Seasoned olives and pomegranate appetizer', category: 'food' },
+  { src: '/images/ai-food/ai-dish-14-lg.webp', alt: 'Nutella chocolate cake with drizzle', category: 'food' },
+  { src: '/images/ai-food/ai-dish-15-lg.webp', alt: 'Lamb chops with rice and grilled vegetables', category: 'food' },
+  { src: '/images/ai-food/ai-dish-16-lg.webp', alt: 'Kebab koobideh with saffron rice and condiments', category: 'food' },
+  { src: '/images/ai-food/ai-dish-17-lg.webp', alt: 'Kebab barg fillet with rice', category: 'food' },
+  { src: '/images/ai-food/ai-dish-18-lg.webp', alt: 'Grilled salmon with herb rice and fries', category: 'food' },
+  { src: '/images/ai-food/ai-dish-19-lg.webp', alt: 'Doogh yogurt drink with mint garnish', category: 'food' },
+
+  // ─── Uber Eats Professional Photos ─────────────────
   { src: '/images/food/hero-lg.webp', alt: 'Tiara Kebabs full spread of Persian dishes', category: 'food' },
   { src: '/images/food/kebab-koobideh-lg.webp', alt: 'Kebab Koobideh with saffron rice and grilled vegetables', category: 'food' },
   { src: '/images/food/kebab-barg-lg.webp', alt: 'Kebab Barg with saffron rice and sauces', category: 'food' },
@@ -20,20 +41,27 @@ export const galleryImages: GalleryImage[] = [
   { src: '/images/food/nutella-chocolate-cake-lg.webp', alt: 'Nutella chocolate cake', category: 'food' },
   { src: '/images/food/doogh-glass-lg.webp', alt: 'Doogh traditional Persian yogurt drink', category: 'food' },
 
-  // Ambiance — AI mood board images
+  // ─── Client Interior Photos (Real restaurant) ─────
+  { src: '/images/client-interior/client-interior-01-lg.webp', alt: 'Restaurant dining area with blue chairs and ambient lighting', category: 'interior' },
+  { src: '/images/client-interior/client-interior-02-lg.webp', alt: 'Restaurant interior angle showing wall art and seating', category: 'interior' },
+  { src: '/images/client-interior/client-interior-03-lg.webp', alt: 'Restaurant view from entrance with table settings', category: 'interior' },
+  { src: '/images/client-interior/client-interior-04-lg.webp', alt: 'Restaurant interior with warm wood paneling', category: 'interior' },
+  { src: '/images/client-interior/client-interior-05-lg.webp', alt: 'Close-up of table setting with marble surface', category: 'interior' },
+  { src: '/images/client-interior/client-interior-06-lg.webp', alt: 'Dining corner with decorative wall panels', category: 'interior' },
+  { src: '/images/client-interior/client-interior-07-lg.webp', alt: 'Restaurant hallway with accent lighting', category: 'interior' },
+  { src: '/images/client-interior/client-interior-08-lg.webp', alt: 'Full restaurant view showing all seating areas', category: 'interior' },
+
+  // ─── AI Interior renders ───────────────────────────
+  { src: '/images/interior/interior-01-lg.webp', alt: 'Tiara restaurant interior render', category: 'interior' },
+  { src: '/images/interior/interior-02-lg.webp', alt: 'Tiara restaurant dining area render', category: 'interior' },
+  { src: '/images/interior/interior-03-lg.webp', alt: 'Tiara restaurant ambiance render', category: 'interior' },
+  { src: '/images/interior/interior-04-lg.webp', alt: 'Tiara restaurant seating render', category: 'interior' },
+
+  // ─── Ambiance / Mood Board ─────────────────────────
   { src: '/images/ambiance/ambiance-01-lg.webp', alt: 'Persian kebab on dark marble setting', category: 'ambiance' },
   { src: '/images/ambiance/ambiance-02-lg.webp', alt: 'Grilled kebab with saffron rice', category: 'ambiance' },
   { src: '/images/ambiance/ambiance-03-lg.webp', alt: 'Persian cuisine arrangement', category: 'ambiance' },
   { src: '/images/ambiance/ambiance-04-lg.webp', alt: 'Flame-grilled kebab close-up', category: 'ambiance' },
   { src: '/images/ambiance/ambiance-05-lg.webp', alt: 'Traditional Persian dining presentation', category: 'ambiance' },
   { src: '/images/ambiance/ambiance-06-lg.webp', alt: 'Kebab skewers over open flame', category: 'ambiance' },
-  { src: '/images/ambiance/ambiance-07-lg.webp', alt: 'Persian food spread on dark table', category: 'ambiance' },
-  { src: '/images/ambiance/ambiance-08-lg.webp', alt: 'Saffron rice and grilled meat', category: 'ambiance' },
-
-  // Interior
-  { src: '/images/interior/interior-01-lg.webp', alt: 'Tiara restaurant interior', category: 'interior' },
-  { src: '/images/interior/interior-02-lg.webp', alt: 'Tiara restaurant dining area', category: 'interior' },
-  { src: '/images/interior/interior-03-lg.webp', alt: 'Tiara restaurant ambiance', category: 'interior' },
-  { src: '/images/interior/interior-04-lg.webp', alt: 'Tiara restaurant seating', category: 'interior' },
-  { src: '/images/interior/interior-ref-lg.webp', alt: 'Restaurant interior with arched brown panels and beige walls', category: 'interior' },
 ]

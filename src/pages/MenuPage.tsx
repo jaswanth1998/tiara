@@ -1,6 +1,5 @@
 import { useRef } from 'react'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
-import { Button } from '@/components/ui/button'
 import { SectionHeading } from '@/components/common/SectionHeading'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
 import { MenuCard } from '@/components/common/MenuCard'
@@ -18,23 +17,25 @@ export function MenuPage() {
 
   return (
     <>
-      {/* Hero */}
+      {/* Hero with AI food spread */}
       <section className="relative flex h-[40vh] min-h-[300px] items-center justify-center overflow-hidden">
         <img
-          src="/images/food/hero-lg.webp"
+          src="/images/ai-food/ai-dish-11-lg.webp"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover animate-ken-burns"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-navy-950/75" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950/70 via-navy-900/50 to-navy-900" />
         <div className="relative z-10 text-center">
-          <h1 className="font-display text-4xl font-bold text-gold-500 md:text-6xl">
-            Our Menu
-          </h1>
-          <p className="mt-3 font-accent text-lg italic text-gold-300 md:text-xl">
-            A Journey Through Authentic Persian Cuisine
-          </p>
+          <div className="animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
+            <h1 className="font-display text-4xl font-bold md:text-6xl">
+              <span className="text-gold-gradient">Our Menu</span>
+            </h1>
+            <p className="mt-3 font-accent text-lg italic text-gold-300/70 md:text-xl">
+              A Journey Through Authentic Persian Cuisine
+            </p>
+          </div>
         </div>
       </section>
 
@@ -50,7 +51,7 @@ export function MenuPage() {
                 key={cat.id}
                 type="button"
                 onClick={() => scrollToCategory(cat.id)}
-                className="shrink-0 rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-gold-300 transition-colors hover:bg-gold-500/10 hover:text-gold-500"
+                className="shrink-0 rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-widest text-gold-300 transition-all duration-300 hover:bg-gold-500/10 hover:text-gold-500"
               >
                 {cat.name}
               </button>
@@ -87,11 +88,13 @@ export function MenuPage() {
 
                 {/* Lunch Menu callout */}
                 {category.id === 'lunch-menu' && (
-                  <div className="mt-6 rounded-lg border border-gold-500/30 bg-navy-800/50 p-4">
-                    <p className="text-sm font-medium text-gold-400">
-                      All items are served with a choice of a soft drink
-                    </p>
-                  </div>
+                  <ScrollReveal delay={100}>
+                    <div className="mt-6 rounded-xl border border-gold-500/30 bg-navy-800/50 p-5 animate-glow-pulse">
+                      <p className="text-sm font-medium text-gold-400">
+                        All items are served with a choice of a soft drink
+                      </p>
+                    </div>
+                  </ScrollReveal>
                 )}
 
                 <div className={
@@ -101,12 +104,13 @@ export function MenuPage() {
                       ? 'mt-6 grid gap-4 md:grid-cols-2'
                       : 'mt-6 divide-y divide-navy-600/30'
                 }>
-                  {category.items.map((item) => (
-                    <MenuCard
-                      key={item.id}
-                      item={item}
-                      variant={isFamily ? 'detailed' : item.image ? 'detailed' : 'compact'}
-                    />
+                  {category.items.map((item, i) => (
+                    <ScrollReveal key={item.id} delay={i * 50} variant="fade-up">
+                      <MenuCard
+                        item={item}
+                        variant={isFamily ? 'detailed' : item.image ? 'detailed' : 'compact'}
+                      />
+                    </ScrollReveal>
                   ))}
                 </div>
 
@@ -118,22 +122,29 @@ export function MenuPage() {
       </div>
 
       {/* Order CTA */}
-      <section className="bg-gold-500 py-12">
-        <div className="mx-auto max-w-3xl px-4 text-center">
-          <h2 className="font-display text-2xl font-bold text-navy-900 md:text-3xl">
-            Love what you see?
-          </h2>
-          <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <Button variant="secondary" className="border-navy-900 bg-navy-900 text-gold-500 hover:bg-navy-800">
-              <a href={restaurant.orderUrl}>Order Online</a>
-            </Button>
-            <Button variant="outline" className="border-navy-900 text-navy-900 hover:bg-navy-900/10">
-              <a href={`tel:${restaurant.phone.replace(/-/g, '')}`}>
-                Call to Reserve
-              </a>
-            </Button>
-          </div>
+      <section className="relative overflow-hidden py-16 md:py-20">
+        <div className="absolute inset-0 bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600" />
+        <div className="absolute inset-0 opacity-10">
+          <div className="h-full w-full bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(0,0,0,0.05)_10px,rgba(0,0,0,0.05)_20px)]" />
         </div>
+        <ScrollReveal variant="scale">
+          <div className="relative mx-auto max-w-3xl px-4 text-center">
+            <h2 className="font-display text-2xl font-bold text-navy-900 md:text-4xl">
+              Love what you see?
+            </h2>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
+              <a href={restaurant.orderUrl} className="btn-navy">
+                <span>Order Online</span>
+              </a>
+              <a
+                href={`tel:${restaurant.phone.replace(/-/g, '')}`}
+                className="btn-gold-outline !border-navy-900 !text-navy-900 hover:!text-gold-300"
+              >
+                <span>Call to Reserve</span>
+              </a>
+            </div>
+          </div>
+        </ScrollReveal>
       </section>
     </>
   )
