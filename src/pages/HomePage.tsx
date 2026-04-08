@@ -1,28 +1,26 @@
 import { Link } from 'react-router-dom'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
-import { MapPin, Phone, Clock, ChevronDown, UtensilsCrossed, Truck, CalendarCheck, Store } from 'lucide-react'
+import {
+  MapPin, Phone, Clock, ChevronDown,
+  UtensilsCrossed, Truck, CalendarCheck, Store,
+  Flame, Leaf, Heart, Star, ChefHat, Award,
+} from 'lucide-react'
 import { SectionHeading } from '@/components/common/SectionHeading'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
-import { MenuCard } from '@/components/common/MenuCard'
 import { PersianDivider } from '@/components/common/PersianDivider'
-import { DishImage } from '@/components/common/DishImage'
 import { VideoBackground } from '@/components/common/VideoBackground'
-import { FEATURED_DISHES } from '@/data/menu'
+import { FoodMarquee } from '@/components/common/FoodMarquee'
 import { restaurant } from '@/data/restaurant'
-import type { MenuItem } from '@/types'
 
-/* ─── Hero with Video Background ───────────────────────────── */
+/* ─── Hero ─────────────────────────────────────────────────── */
 function HeroSection() {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
-      {/* Video background */}
       <VideoBackground
         webmSrc="/videos/hero-bg.webm"
         mp4Src="/videos/hero-bg.mp4"
         posterSrc="/videos/hero-bg-poster.jpg"
       />
-
-      {/* Fallback image for poster */}
       <img
         src="/images/food/hero-lg.webp"
         alt=""
@@ -30,11 +28,9 @@ function HeroSection() {
         className="absolute inset-0 h-full w-full object-cover"
         loading="eager"
       />
-
-      {/* Dark overlay with gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-navy-950/80 via-navy-900/50 to-navy-950/90" />
 
-      {/* Animated gold particles / ornaments */}
+      {/* Floating gold particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 h-1 w-1 rounded-full bg-gold-500/30 animate-float" />
         <div className="absolute top-40 right-20 h-1.5 w-1.5 rounded-full bg-gold-500/20 animate-float-slow" />
@@ -42,7 +38,6 @@ function HeroSection() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-4xl px-4 text-center">
-        {/* Logo with glow */}
         <div className="animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
           <img
             src="/images/logo/logo-icon.png"
@@ -77,7 +72,6 @@ function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
         <div className="flex flex-col items-center gap-2">
           <span className="text-xs uppercase tracking-widest text-gold-500/50">Scroll</span>
@@ -85,67 +79,183 @@ function HeroSection() {
         </div>
       </div>
 
-      {/* Bottom gradient fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-navy-900 to-transparent" />
     </section>
   )
 }
 
-/* ─── Intro Strip with Icons ──────────────────────────────── */
-function IntroStrip() {
-  const services = [
-    { icon: UtensilsCrossed, label: 'Dine-in' },
-    { icon: Store, label: 'Takeout' },
-    { icon: Truck, label: 'Delivery' },
-    { icon: CalendarCheck, label: 'Reservations' },
-  ]
-
+/* ─── About + Hours Card (Nawabs-style side-by-side) ──────── */
+function AboutWithHours() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 py-6">
-      <div className="absolute inset-0 opacity-10">
-        <div className="h-full w-full bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(0,0,0,0.05)_10px,rgba(0,0,0,0.05)_20px)]" />
-      </div>
-      <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-4 px-4 text-center md:flex-row md:justify-center md:gap-10">
-        {services.map((service) => (
-          <div key={service.label} className="flex items-center gap-2 text-navy-900">
-            <service.icon className="h-5 w-5" />
-            <span className="text-sm font-semibold uppercase tracking-wider">{service.label}</span>
+    <section className="bg-navy-900 py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-4 md:px-8">
+        <div className="grid gap-10 lg:grid-cols-5 lg:items-center">
+          {/* Left: About content — 3 cols */}
+          <div className="lg:col-span-3">
+            <ScrollReveal variant="slide-left">
+              <div className="space-y-6">
+                <p className="font-display text-sm uppercase tracking-[0.3em] text-gold-500/70">
+                  Welcome to Tiara
+                </p>
+                <h2 className="font-display text-3xl font-bold text-gold-500 md:text-5xl leading-tight">
+                  Authentic Persian Cuisine<br />
+                  <span className="text-gold-300/80">in Bedford, Nova Scotia</span>
+                </h2>
+                <div className="h-px w-20 bg-gold-500/40" />
+                <p className="text-lg leading-relaxed text-gold-300/80">
+                  At Tiara Kebabs &amp; More, we bring the rich flavors of Persian cuisine to
+                  the heart of Bedford. Every dish is a celebration of centuries-old recipes,
+                  prepared with fresh ingredients and cooked over open flames just as
+                  our ancestors intended.
+                </p>
+                <p className="leading-relaxed text-gold-300/70">
+                  From aromatic saffron rice to our signature koobideh kebabs, each
+                  bite is a journey through the culinary traditions of Iran. Welcome to our table —
+                  where every meal is a royal experience.
+                </p>
+                <div className="flex flex-col gap-4 pt-2 sm:flex-row">
+                  <Link to="/about" className="btn-gold">
+                    <span>Our Story</span>
+                  </Link>
+                  <Link to="/menu" className="btn-gold-outline">
+                    <span>View Menu</span>
+                  </Link>
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
-        ))}
-        <span className="hidden h-5 w-px bg-navy-900/30 md:block" />
-        <p className="text-sm font-medium text-navy-900/80">
-          {restaurant.address}
-        </p>
+
+          {/* Right: Hours card — 2 cols */}
+          <div className="lg:col-span-2">
+            <ScrollReveal variant="slide-right" delay={200}>
+              <div className="relative overflow-hidden rounded-2xl border border-gold-500/20 bg-navy-800/60 p-8 backdrop-blur-sm">
+                {/* Decorative corner accents */}
+                <div className="absolute top-0 left-0 h-12 w-12 border-t-2 border-l-2 border-gold-500/30 rounded-tl-2xl" />
+                <div className="absolute bottom-0 right-0 h-12 w-12 border-b-2 border-r-2 border-gold-500/30 rounded-br-2xl" />
+
+                <div className="text-center space-y-6">
+                  <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-gold-500/10">
+                    <Clock className="h-8 w-8 text-gold-500" />
+                  </div>
+                  <h3 className="font-display text-2xl font-bold text-gold-500">Opening Hours</h3>
+                  <div className="h-px w-full bg-gold-500/20" />
+
+                  <div className="space-y-3 text-sm">
+                    {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day) => (
+                      <div key={day} className="flex items-center justify-between">
+                        <span className="font-medium text-gold-300">{day}</span>
+                        <span className="flex-1 mx-3 border-b border-dotted border-gold-500/20" />
+                        <span className="text-gold-300/70">11:00 AM – 9:30 PM</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="h-px w-full bg-gold-500/20" />
+                  <a
+                    href={`tel:${restaurant.phone.replace(/-/g, '')}`}
+                    className="flex items-center justify-center gap-2 text-gold-500 transition-colors hover:text-gold-400"
+                  >
+                    <Phone className="h-4 w-4" />
+                    <span className="font-semibold">{restaurant.phone}</span>
+                  </a>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
       </div>
     </section>
   )
 }
 
-/* ─── Featured Dishes with AI Photos ──────────────────────── */
-function FeaturedDishesSection() {
+/* ─── Service Cards ───────────────────────────────────────── */
+function ServiceCards() {
+  const services = [
+    { icon: UtensilsCrossed, label: 'Dine-in', desc: 'Elegant atmosphere with authentic Persian ambiance' },
+    { icon: Store, label: 'Takeout', desc: 'Quick pickup of your favorite dishes' },
+    { icon: Truck, label: 'Delivery', desc: 'Fresh food delivered right to your door' },
+    { icon: CalendarCheck, label: 'Reservations', desc: 'Book your table for a special evening' },
+  ]
+
+  return (
+    <section className="bg-warm-50 py-16 md:py-20">
+      <div className="mx-auto max-w-7xl px-4 md:px-8">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+          {services.map((service, i) => (
+            <ScrollReveal key={service.label} delay={i * 100} variant="fade-up">
+              <div className="group relative overflow-hidden rounded-2xl border border-warm-200 bg-white p-6 text-center shadow-sm transition-all duration-500 hover:border-gold-500/40 hover:shadow-lg hover:-translate-y-1">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gold-500/10 text-gold-600 transition-all duration-500 group-hover:bg-gold-500 group-hover:text-navy-900">
+                  <service.icon className="h-7 w-7" />
+                </div>
+                <h3 className="mt-4 font-display text-lg font-bold text-warm-900">{service.label}</h3>
+                <p className="mt-2 text-sm text-warm-500 leading-relaxed">{service.desc}</p>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ─── Signature Dishes (circular images + dotted price lines) ─ */
+function SignatureDishes() {
+  const dishes = [
+    { name: 'Kebab Koobideh', price: 25, desc: 'Ground lamb & beef, saffron rice, grilled tomato', img: '/images/ai-food/ai-dish-16-lg.webp' },
+    { name: 'Kebab Barg', price: 31, desc: 'Veal fillet mignon, marinated in spices', img: '/images/ai-food/ai-dish-01-lg.webp' },
+    { name: 'Lamb Chops', price: 41, desc: 'Nova Scotia lamb, traditionally seasoned', img: '/images/ai-food/ai-dish-08-lg.webp' },
+    { name: 'Grilled Salmon', price: 27, desc: 'Saffron-marinated Atlantic salmon', img: '/images/ai-food/ai-dish-07-lg.webp' },
+    { name: 'Ghorme Sabzi', price: 18, desc: 'Rich herb stew with kidney beans & lime', img: '/images/ai-food/ai-dish-05-lg.webp' },
+    { name: 'Fesenjan', price: 19, desc: 'Walnut pomegranate stew with chicken', img: '/images/ai-food/ai-dish-03-lg.webp' },
+    { name: 'Zereshk Polo', price: 18, desc: 'Barberry rice with saffron chicken', img: '/images/ai-food/ai-dish-10-lg.webp' },
+    { name: 'Kebab Sultani', price: 41, desc: 'Royal duo of lamb fillet & ground lamb', img: '/images/ai-food/ai-dish-09-lg.webp' },
+  ]
+
   return (
     <section className="bg-navy-900 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <ScrollReveal>
           <SectionHeading
-            title="Signature Dishes"
-            subtitle="Crafted with fire, flavor, and tradition"
+            title="Our Signature Dishes"
+            subtitle="Handcrafted with fire, flavor, and tradition"
           />
         </ScrollReveal>
 
-        <div className="mt-14 grid gap-8 md:grid-cols-3">
-          {FEATURED_DISHES.map((item, i) => (
-            <ScrollReveal key={item?.id} delay={i * 200} variant="scale">
-              <div className="hover-lift rounded-xl overflow-hidden bg-navy-800/50 border border-navy-700/50">
-                <MenuCard item={item as MenuItem} variant="featured" />
+        <div className="mt-16 grid gap-x-8 gap-y-10 md:grid-cols-2">
+          {dishes.map((dish, i) => (
+            <ScrollReveal key={dish.name} delay={i * 80} variant="fade-up">
+              <div className="group flex items-center gap-5">
+                {/* Circular image */}
+                <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-gold-500/30 shadow-lg transition-all duration-500 group-hover:border-gold-500 group-hover:shadow-gold-500/20 md:h-24 md:w-24">
+                  <img
+                    src={dish.img}
+                    alt={dish.name}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                </div>
+
+                {/* Name + dotted line + price */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-baseline gap-2">
+                    <h3 className="shrink-0 font-display text-lg font-bold text-gold-500 transition-colors duration-300 group-hover:text-gold-400 md:text-xl">
+                      {dish.name}
+                    </h3>
+                    <span className="flex-1 border-b-2 border-dotted border-gold-500/20 mb-1" />
+                    <span className="shrink-0 font-display text-lg font-bold text-gold-500 md:text-xl">
+                      ${dish.price}
+                    </span>
+                  </div>
+                  <p className="mt-1 text-sm text-gold-300/60 line-clamp-1">{dish.desc}</p>
+                </div>
               </div>
             </ScrollReveal>
           ))}
         </div>
 
         <ScrollReveal delay={600}>
-          <div className="mt-12 text-center">
-            <Link to="/menu" className="btn-gold-outline">
+          <div className="mt-14 text-center">
+            <Link to="/menu" className="btn-gold">
               <span>View Full Menu</span>
             </Link>
           </div>
@@ -155,240 +265,182 @@ function FeaturedDishesSection() {
   )
 }
 
-/* ─── AI Food Showcase (new section) ──────────────────────── */
-function AIFoodShowcase() {
-  const dishes = [
-    { src: '/images/ai-food/ai-dish-16-lg.webp', name: 'Kebab Koobideh', desc: 'Ground beef kebab' },
-    { src: '/images/ai-food/ai-dish-06-lg.webp', name: 'Chicken Kebab', desc: 'Grilled chicken thigh' },
-    { src: '/images/ai-food/ai-dish-07-lg.webp', name: 'Salmon Kebab', desc: 'Saffron-glazed salmon' },
-    { src: '/images/ai-food/ai-dish-05-lg.webp', name: 'Ghorme Sabzi', desc: 'Herb stew with rice' },
-    { src: '/images/ai-food/ai-dish-04-lg.webp', name: 'Gheimeh', desc: 'Split pea stew' },
-    { src: '/images/ai-food/ai-dish-10-lg.webp', name: 'Zereshk Polo', desc: 'Barberry rice & chicken' },
+/* ─── Parallax Stats Section ─────────────────────────────── */
+function ParallaxStats() {
+  const stats = [
+    { value: '50+', label: 'Menu Items', icon: ChefHat },
+    { value: '100%', label: 'Halal Certified', icon: Award },
+    { value: '7', label: 'Days a Week', icon: Clock },
+    { value: '5★', label: 'Customer Rating', icon: Star },
   ]
 
   return (
-    <section className="bg-navy-950 py-20 md:py-28 overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 md:px-8">
-        <ScrollReveal>
-          <SectionHeading
-            title="A Feast for the Eyes"
-            subtitle="Every dish tells a story of Persian heritage"
-          />
-        </ScrollReveal>
-
-        <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
-          {dishes.map((dish, i) => (
-            <ScrollReveal key={dish.name} delay={i * 100} variant={i % 2 === 0 ? 'fade-up' : 'scale'}>
-              <div className="group relative overflow-hidden rounded-xl aspect-square hover-zoom">
-                <img
-                  src={dish.src}
-                  alt={dish.name}
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                  <h3 className="font-display text-lg font-bold text-gold-500">{dish.name}</h3>
-                  <p className="text-sm text-gold-300/70">{dish.desc}</p>
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ─── About Preview ────────────────────────────────────────── */
-function AboutPreviewSection() {
-  return (
-    <section className="bg-warm-50 py-20 md:py-28">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 md:items-center md:gap-16 md:px-8">
-        <ScrollReveal variant="slide-left">
-          <div className="relative">
-            <div className="overflow-hidden rounded-2xl shadow-2xl hover-zoom">
-              <img
-                src="/images/client-interior/client-interior-01-lg.webp"
-                alt="Tiara restaurant interior with elegant lighting and modern design"
-                className="h-full w-full object-cover"
-                loading="lazy"
-              />
-            </div>
-            {/* Decorative accent */}
-            <div className="absolute -bottom-4 -right-4 h-24 w-24 rounded-xl border-2 border-gold-500/30 -z-10 hidden md:block" />
-          </div>
-        </ScrollReveal>
-
-        <ScrollReveal variant="slide-right" delay={200}>
-          <div>
-            <SectionHeading
-              title="Our Story"
-              subtitle="Where tradition meets modern elegance"
-              align="left"
-              theme="light"
-            />
-            <p className="mt-6 text-warm-700 leading-relaxed text-lg">
-              At Tiara Kebabs &amp; More, we bring the rich flavors of Persian cuisine to
-              Bedford, Nova Scotia. Every dish is a celebration of centuries-old recipes,
-              prepared with fresh ingredients and cooked over open flames just as
-              our ancestors intended.
-            </p>
-            <p className="mt-4 text-warm-700 leading-relaxed">
-              From the aromatic saffron rice to our signature koobideh kebabs, each
-              bite is a journey through the heart of Iran. Welcome to our table.
-            </p>
-            <div className="mt-8">
-              <Link to="/about" className="btn-navy">
-                <span>Learn More</span>
-              </Link>
-            </div>
-          </div>
-        </ScrollReveal>
-      </div>
-    </section>
-  )
-}
-
-/* ─── Video Divider ───────────────────────────────────────── */
-function VideoDivider() {
-  return (
-    <section className="relative h-[50vh] overflow-hidden md:h-[60vh]">
-      <VideoBackground
-        webmSrc="/videos/ambiance-1.webm"
-        mp4Src="/videos/ambiance-1.mp4"
-        posterSrc="/videos/ambiance-1-poster.jpg"
-      />
+    <section className="relative overflow-hidden py-20 md:py-24">
       <img
         src="/images/ai-food/ai-dish-11-lg.webp"
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover animate-ken-burns"
         loading="lazy"
       />
-      <div className="absolute inset-0 bg-navy-950/70" />
-      <div className="relative flex h-full items-center justify-center px-4">
-        <ScrollReveal variant="scale">
-          <blockquote className="text-center">
-            <PersianDivider variant="accent" className="mx-auto mb-6" />
-            <p className="font-display text-3xl font-bold text-gold-500 md:text-5xl lg:text-6xl">
-              Fire, flavor, and tradition.
-            </p>
-            <p className="mt-4 font-accent text-lg italic text-gold-300/70 md:text-xl">
-              — The essence of Persian cuisine
-            </p>
-            <PersianDivider variant="accent" className="mx-auto mt-6" />
-          </blockquote>
-        </ScrollReveal>
-      </div>
-    </section>
-  )
-}
+      <div className="absolute inset-0 bg-navy-950/85 backdrop-blur-[2px]" />
 
-/* ─── Menu Highlights (horizontal scroll) ──────────────────── */
-function MenuHighlights() {
-  const highlights: MenuItem[] = [
-    { id: 'h-kebab-barg', name: 'Kebab Barg', price: 31, description: 'Juicy veal fillet mignon', image: '/images/food/kebab-barg', tags: [] },
-    { id: 'h-fesenjan', name: 'Fesenjan', price: 19, description: 'Walnut pomegranate stew', image: '/images/food/fesenjan', tags: [] },
-    { id: 'h-salmon', name: 'Grilled Salmon', price: 27, description: 'Saffron marinated Atlantic salmon', image: '/images/food/grilled-salmon-kebab', tags: [] },
-    { id: 'h-mirza', name: 'Mirza Ghasemi', price: 13, description: 'Grilled eggplant appetizer', image: '/images/food/mirza-ghasemi', tags: [] },
-    { id: 'h-ghorme', name: 'Ghorme Sabzi', price: 18, description: 'Rich herb stew', image: '/images/food/ghorme-sabzi', tags: [] },
-    { id: 'h-cake', name: 'Saffron Pistachio Cake', price: 8, description: 'Delicate saffron-infused cake', image: '/images/food/saffron-pistachio-cake', tags: [] },
-  ]
-
-  return (
-    <section className="bg-navy-800 py-20 md:py-28">
-      <div className="mx-auto max-w-7xl px-4 md:px-8">
-        <ScrollReveal>
-          <SectionHeading
-            title="From Our Kitchen"
-            subtitle="A taste of what awaits"
-          />
-        </ScrollReveal>
-
-        <div className="mt-14 flex gap-6 overflow-x-auto pb-6 scrollbar-none snap-x snap-mandatory">
-          {highlights.map((item, i) => (
-            <ScrollReveal key={item.id} delay={i * 100} variant="fade-up">
-              <div className="w-60 shrink-0 snap-start md:w-72 group">
-                <div className="aspect-square overflow-hidden rounded-xl hover-zoom">
-                  {item.image && (
-                    <DishImage
-                      src={item.image}
-                      alt={item.name}
-                      sizes="288px"
-                      className="transition-transform duration-700 group-hover:scale-110"
-                    />
-                  )}
+      <div className="relative mx-auto max-w-7xl px-4 md:px-8">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+          {stats.map((stat, i) => (
+            <ScrollReveal key={stat.label} delay={i * 150} variant="scale">
+              <div className="group text-center">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-gold-500/30 bg-navy-900/60 transition-all duration-500 group-hover:border-gold-500 group-hover:bg-gold-500/10">
+                  <stat.icon className="h-7 w-7 text-gold-500" />
                 </div>
-                <h3 className="mt-4 font-display text-lg font-bold text-gold-500 group-hover:text-gold-gradient transition-colors duration-300">
-                  {item.name}
-                </h3>
-                <p className="text-sm text-gold-300/60">{item.description}</p>
-                <p className="mt-1 text-sm font-semibold text-gold-500">${item.price}</p>
+                <p className="mt-4 font-display text-4xl font-bold text-gold-500 md:text-5xl">
+                  {stat.value}
+                </p>
+                <p className="mt-2 text-sm uppercase tracking-wider text-gold-300/60">{stat.label}</p>
               </div>
             </ScrollReveal>
           ))}
         </div>
-
-        <ScrollReveal delay={400}>
-          <div className="mt-10 text-center">
-            <Link to="/menu" className="btn-gold-outline">
-              <span>See Full Menu</span>
-            </Link>
-          </div>
-        </ScrollReveal>
       </div>
     </section>
   )
 }
 
-/* ─── Testimonials ─────────────────────────────────────────── */
+/* ─── Experience Section (features + image) ──────────────── */
+function ExperienceSection() {
+  const features = [
+    { icon: Flame, title: 'Open Flame Grilling', desc: 'All kebabs cooked over real charcoal fire for authentic smoky flavor' },
+    { icon: Leaf, title: 'Fresh Ingredients', desc: 'Locally sourced Nova Scotia meats and seasonal produce' },
+    { icon: Heart, title: 'Family Recipes', desc: 'Generations-old recipes from the heart of Persian tradition' },
+    { icon: Award, title: '100% Halal', desc: 'All our meats are certified halal and prepared with care' },
+  ]
+
+  return (
+    <section className="bg-warm-50 py-20 md:py-28 overflow-hidden">
+      <div className="mx-auto max-w-7xl px-4 md:px-8">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+          {/* Left: Image collage */}
+          <ScrollReveal variant="slide-left">
+            <div className="relative">
+              <div className="overflow-hidden rounded-2xl shadow-2xl">
+                <img
+                  src="/images/client-interior/client-interior-01-lg.webp"
+                  alt="Tiara restaurant interior with elegant lighting"
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              {/* Floating small image */}
+              <div className="absolute -bottom-6 -right-4 h-32 w-32 overflow-hidden rounded-xl border-4 border-warm-50 shadow-xl md:h-40 md:w-40 hidden md:block">
+                <img
+                  src="/images/ai-food/ai-dish-16-lg.webp"
+                  alt="Kebab Koobideh"
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              {/* Decorative accent */}
+              <div className="absolute -top-4 -left-4 h-24 w-24 rounded-xl border-2 border-gold-600/30 -z-10 hidden md:block" />
+            </div>
+          </ScrollReveal>
+
+          {/* Right: Features list */}
+          <div>
+            <ScrollReveal variant="slide-right">
+              <div className="mb-10">
+                <p className="font-display text-sm uppercase tracking-[0.3em] text-warm-500">
+                  The Tiara Experience
+                </p>
+                <h2 className="mt-3 font-display text-3xl font-bold text-warm-900 md:text-4xl lg:text-5xl">
+                  Why Our Guests<br />Keep Coming Back
+                </h2>
+                <div className="mt-4 h-px w-20 bg-warm-300" />
+              </div>
+            </ScrollReveal>
+
+            <div className="space-y-6">
+              {features.map((feature, i) => (
+                <ScrollReveal key={feature.title} delay={i * 120} variant="fade-up">
+                  <div className="group flex gap-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-600 transition-all duration-500 group-hover:bg-gold-500 group-hover:text-white">
+                      <feature.icon className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-lg font-bold text-warm-900">{feature.title}</h3>
+                      <p className="mt-1 text-sm text-warm-500 leading-relaxed">{feature.desc}</p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+
+            <ScrollReveal delay={500}>
+              <div className="mt-10">
+                <Link to="/about" className="btn-navy">
+                  <span>Learn More About Us</span>
+                </Link>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ─── Testimonials ────────────────────────────────────────── */
 function TestimonialsSection() {
   const reviews = [
     {
-      quote: 'The best Persian food in Nova Scotia! The kebab koobideh is absolutely incredible.',
+      quote: 'The best Persian food in Nova Scotia! The kebab koobideh is absolutely incredible. The flavors are rich and authentic.',
       author: 'Sarah M.',
       rating: 5,
     },
     {
-      quote: 'Beautiful restaurant with amazing food. The lamb chops were cooked to perfection.',
+      quote: 'Beautiful restaurant with amazing food. The lamb chops were cooked to perfection. Will definitely be coming back!',
       author: 'James R.',
       rating: 5,
     },
     {
-      quote: 'Authentic flavors that remind me of home. The ghorme sabzi is a must-try!',
+      quote: 'Authentic flavors that remind me of home. The ghorme sabzi is a must-try! My family loves this place.',
       author: 'Maryam K.',
       rating: 5,
     },
   ]
 
   return (
-    <section className="bg-warm-50 py-20 md:py-28">
+    <section className="bg-navy-950 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <ScrollReveal>
           <SectionHeading
             title="What Our Guests Say"
-            theme="light"
+            subtitle="Hear from those who've experienced our cuisine"
           />
         </ScrollReveal>
 
         <div className="mt-14 grid gap-8 md:grid-cols-3">
           {reviews.map((review, i) => (
             <ScrollReveal key={review.author} delay={i * 200} variant="fade-up">
-              <div className="hover-lift rounded-2xl border border-warm-200 bg-white p-8 shadow-sm">
-                <div className="mb-4 flex gap-1 text-gold-500">
-                  {Array.from({ length: review.rating }).map((_, j) => (
-                    <svg key={j} className="h-5 w-5 fill-current" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
+              <div className="group relative overflow-hidden rounded-2xl border border-navy-700/50 bg-navy-800/50 p-8 transition-all duration-500 hover:border-gold-500/30 hover:-translate-y-1">
+                {/* Quote mark */}
+                <span className="absolute -top-2 left-6 font-display text-7xl text-gold-500/10 leading-none">&ldquo;</span>
+
+                <div className="relative">
+                  <div className="mb-4 flex gap-1 text-gold-500">
+                    {Array.from({ length: review.rating }).map((_, j) => (
+                      <Star key={j} className="h-4 w-4 fill-current" />
+                    ))}
+                  </div>
+                  <p className="font-accent text-lg italic text-gold-300/80 leading-relaxed">
+                    &ldquo;{review.quote}&rdquo;
+                  </p>
+                  <div className="mt-6 flex items-center gap-3">
+                    <div className="h-px flex-1 bg-gold-500/20" />
+                    <p className="text-sm font-semibold uppercase tracking-wider text-gold-500/60">
+                      {review.author}
+                    </p>
+                  </div>
                 </div>
-                <p className="font-accent text-lg italic text-warm-700 leading-relaxed">
-                  &ldquo;{review.quote}&rdquo;
-                </p>
-                <p className="mt-6 text-sm font-semibold uppercase tracking-wider text-warm-500">
-                  — {review.author}
-                </p>
               </div>
             </ScrollReveal>
           ))}
@@ -398,72 +450,93 @@ function TestimonialsSection() {
   )
 }
 
-/* ─── Location & Hours ─────────────────────────────────────── */
+/* ─── Food Marquee Strip ─────────────────────────────────── */
+function FoodMarqueeStrip() {
+  return (
+    <section className="bg-warm-50 py-6 overflow-hidden">
+      <FoodMarquee />
+    </section>
+  )
+}
+
+/* ─── Location 3-Column ──────────────────────────────────── */
 function LocationSection() {
   return (
     <section className="bg-navy-900 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <ScrollReveal>
-          <SectionHeading title="Find Us" />
+          <SectionHeading title="Visit Us" subtitle="We'd love to welcome you" />
         </ScrollReveal>
 
-        <div className="mt-14 grid gap-10 md:grid-cols-2">
-          <ScrollReveal variant="slide-left">
-            <div className="overflow-hidden rounded-2xl shadow-2xl">
+        <div className="mt-14 grid gap-8 md:grid-cols-3">
+          {/* Map */}
+          <ScrollReveal variant="fade-up" delay={0}>
+            <div className="overflow-hidden rounded-2xl shadow-2xl border border-navy-700/50 md:col-span-1 h-full min-h-[280px]">
               <iframe
                 title="Tiara Kebabs & More location on Google Maps"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2835.1!2d-63.667!3d44.729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s640+Brookline+Drive+Bedford+Nova+Scotia!5e0!3m2!1sen!2sca!4v1"
-                className="h-72 w-full border-0 md:h-96"
+                className="h-full w-full border-0 min-h-[280px]"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
             </div>
           </ScrollReveal>
 
-          <ScrollReveal variant="slide-right" delay={200}>
-            <div className="space-y-8">
-              <div className="flex items-start gap-5 group">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-500 transition-all duration-300 group-hover:bg-gold-500 group-hover:text-navy-900">
-                  <MapPin className="h-6 w-6" />
+          {/* Contact info */}
+          <ScrollReveal variant="fade-up" delay={150}>
+            <div className="space-y-6 rounded-2xl border border-navy-700/50 bg-navy-800/40 p-8">
+              <h3 className="font-display text-xl font-bold text-gold-500">Contact Info</h3>
+              <div className="space-y-5">
+                <div className="group flex items-start gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-500 transition-all duration-300 group-hover:bg-gold-500 group-hover:text-navy-900">
+                    <MapPin className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gold-300">Address</p>
+                    <p className="text-sm text-gold-300/60">{restaurant.address}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-display text-lg font-bold text-gold-500">Address</h3>
-                  <p className="mt-1 text-gold-300/80">{restaurant.address}</p>
+                <div className="group flex items-start gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-500 transition-all duration-300 group-hover:bg-gold-500 group-hover:text-navy-900">
+                    <Phone className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gold-300">Phone</p>
+                    <a href={`tel:${restaurant.phone.replace(/-/g, '')}`} className="text-sm text-gold-300/60 hover:text-gold-500 transition-colors">
+                      {restaurant.phone}
+                    </a>
+                  </div>
+                </div>
+                <div className="group flex items-start gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-500 transition-all duration-300 group-hover:bg-gold-500 group-hover:text-navy-900">
+                    <Clock className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gold-300">Hours</p>
+                    <p className="text-sm text-gold-300/60">{restaurant.hours}</p>
+                  </div>
                 </div>
               </div>
-              <div className="flex items-start gap-5 group">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-500 transition-all duration-300 group-hover:bg-gold-500 group-hover:text-navy-900">
-                  <Phone className="h-6 w-6" />
-                </div>
-                <div>
-                  <h3 className="font-display text-lg font-bold text-gold-500">Phone</h3>
-                  <a
-                    href={`tel:${restaurant.phone.replace(/-/g, '')}`}
-                    className="mt-1 text-gold-300/80 hover:text-gold-500 transition-colors duration-300"
-                  >
-                    {restaurant.phone}
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start gap-5 group">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold-500/10 text-gold-500 transition-all duration-300 group-hover:bg-gold-500 group-hover:text-navy-900">
-                  <Clock className="h-6 w-6" />
-                </div>
-                <div>
-                  <h3 className="font-display text-lg font-bold text-gold-500">Hours</h3>
-                  <p className="mt-1 text-gold-300/80">{restaurant.hours}</p>
-                </div>
-              </div>
-              <div className="pt-2">
-                <a
-                  href={`https://maps.google.com/?q=${encodeURIComponent(restaurant.address)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-gold"
-                >
-                  <span>Get Directions</span>
-                </a>
-              </div>
+              <a
+                href={`https://maps.google.com/?q=${encodeURIComponent(restaurant.address)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gold w-full text-center"
+              >
+                <span>Get Directions</span>
+              </a>
+            </div>
+          </ScrollReveal>
+
+          {/* Interior image */}
+          <ScrollReveal variant="fade-up" delay={300}>
+            <div className="overflow-hidden rounded-2xl shadow-2xl h-full min-h-[280px]">
+              <img
+                src="/images/client-interior/client-interior-02-lg.webp"
+                alt="Inside Tiara restaurant — warm modern Persian decor"
+                className="h-full w-full object-cover min-h-[280px]"
+                loading="lazy"
+              />
             </div>
           </ScrollReveal>
         </div>
@@ -472,16 +545,20 @@ function LocationSection() {
   )
 }
 
-/* ─── Final CTA ────────────────────────────────────────────── */
+/* ─── Final CTA ──────────────────────────────────────────── */
 function FinalCTA() {
   return (
     <section className="relative overflow-hidden py-20 md:py-28">
-      {/* Background with AI food spread image */}
+      <VideoBackground
+        webmSrc="/videos/ambiance-1.webm"
+        mp4Src="/videos/ambiance-1.mp4"
+        posterSrc="/videos/ambiance-1-poster.jpg"
+      />
       <img
-        src="/images/ai-food/ai-dish-11-lg.webp"
+        src="/images/ai-food/ai-dish-04-lg.webp"
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover animate-ken-burns"
+        className="absolute inset-0 h-full w-full object-cover"
         loading="lazy"
       />
       <div className="absolute inset-0 bg-navy-950/80 backdrop-blur-sm" />
@@ -490,9 +567,9 @@ function FinalCTA() {
         <div className="relative mx-auto max-w-3xl px-4 text-center">
           <PersianDivider variant="accent" className="mx-auto mb-8" />
           <h2 className="font-display text-3xl font-bold md:text-5xl">
-            <span className="text-gold-gradient">Ready to experience</span>
+            <span className="text-gold-gradient">Ready to Experience</span>
             <br />
-            <span className="text-gold-500">authentic Persian flavors?</span>
+            <span className="text-gold-500">Authentic Persian Flavors?</span>
           </h2>
           <p className="mt-4 font-accent text-lg italic text-gold-300/70">
             Join us for an unforgettable dining experience
@@ -515,19 +592,19 @@ function FinalCTA() {
   )
 }
 
-/* ─── HomePage ─────────────────────────────────────────────── */
+/* ─── HomePage ───────────────────────────────────────────── */
 export function HomePage() {
   useDocumentTitle('')
   return (
     <>
       <HeroSection />
-      <IntroStrip />
-      <FeaturedDishesSection />
-      <AIFoodShowcase />
-      <AboutPreviewSection />
-      <MenuHighlights />
-      <VideoDivider />
+      <AboutWithHours />
+      <ServiceCards />
+      <SignatureDishes />
+      <ParallaxStats />
+      <ExperienceSection />
       <TestimonialsSection />
+      <FoodMarqueeStrip />
       <LocationSection />
       <FinalCTA />
     </>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, MapPin, Phone, ShoppingBag } from 'lucide-react'
+import { Menu, MapPin, ShoppingBag } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { NAV_LINKS, restaurant } from '@/data/restaurant'
 import { MobileNav } from './MobileNav'
