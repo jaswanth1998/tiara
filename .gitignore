@@ -20,6 +20,10 @@ assests/pics/Main Pictures/
 assests/pics/client_sent/
 assests/marketing/
 
+# Testing artifacts
+screenshots/
+.playwright-mcp/
+
 # Editor
 .vscode/
 *.swp
