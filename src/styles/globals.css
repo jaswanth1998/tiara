@@ -401,3 +401,29 @@
 .animate-marquee:hover {
     animation-play-state: paused;
 }
+
+/* Parallax layer depth */
+.parallax-container {
+    perspective: 1px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.parallax-layer-back {
+    transform: translateZ(-1px) scale(2);
+}
+.parallax-layer-front {
+    transform: translateZ(0);
+}
+
+/* Parallax image reveal on scroll */
+.parallax-reveal {
+    clip-path: inset(0);
+}
+.parallax-reveal img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
