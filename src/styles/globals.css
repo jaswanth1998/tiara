@@ -1,11 +1,25 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/playfair-display";
 @import "@fontsource/inter/400.css";
 @import "@fontsource/inter/500.css";
 @import "@fontsource/inter/600.css";
 @import "@fontsource-variable/cormorant-garamond/wght-italic.css";
+
+@font-face {
+    font-family: 'Lovelace Text';
+    src: url('/fonts/lovelace/lovelace-text-regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Lovelace Text';
+    src: url('/fonts/lovelace/lovelace-text-bold-italic.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -13,17 +27,17 @@
 
 @theme inline {
     /* Fonts */
-    --font-display: 'Playfair Display', Georgia, serif;
-    --font-sans: 'Inter', system-ui, sans-serif;
-    --font-accent: 'Cormorant Garamond', Georgia, serif;
+    --font-display: 'Lovelace Text', 'Playfair Display', Georgia, serif;
+    --font-sans: 'Lovelace Text', 'Inter', system-ui, sans-serif;
+    --font-accent: 'Lovelace Text', 'Cormorant Garamond', Georgia, serif;
     --font-heading: var(--font-display);
 
     /* Navy (Primary backgrounds) */
-    --color-navy-950: #080E22;
-    --color-navy-900: #0F1B3D;
-    --color-navy-800: #162550;
-    --color-navy-700: #1E3168;
-    --color-navy-600: #2A4080;
+    --color-navy-950: #020616;
+    --color-navy-900: #080E22;
+    --color-navy-800: #0F1B3D;
+    --color-navy-700: #162550;
+    --color-navy-600: #1E3168;
 
     /* Gold (Accent) */
     --color-gold-300: #E8D48B;
@@ -72,11 +86,11 @@
 }
 
 :root {
-    --navy-950: #080E22;
-    --navy-900: #0F1B3D;
-    --navy-800: #162550;
-    --navy-700: #1E3168;
-    --navy-600: #2A4080;
+    --navy-950: #020616;
+    --navy-900: #080E22;
+    --navy-800: #0F1B3D;
+    --navy-700: #162550;
+    --navy-600: #1E3168;
     --gold-300: #E8D48B;
     --gold-400: #D4BC6A;
     --gold-500: #C5A55A;
@@ -195,18 +209,18 @@
         @apply relative inline-flex items-center justify-center gap-2 overflow-hidden
                rounded-full bg-navy-900 px-8 py-3.5 font-sans text-sm font-semibold
                uppercase tracking-widest text-gold-500 transition-all duration-500 ease-out;
-        box-shadow: 0 4px 15px rgba(15, 27, 61, 0.4);
+        box-shadow: 0 4px 15px rgba(8, 14, 34, 0.4);
     }
     .btn-navy::before {
         content: '';
         @apply absolute inset-0 opacity-0 transition-opacity duration-500;
-        background: linear-gradient(135deg, #162550, #0F1B3D);
+        background: linear-gradient(135deg, #0F1B3D, #080E22);
     }
     .btn-navy:hover::before {
         @apply opacity-100;
     }
     .btn-navy:hover {
-        box-shadow: 0 8px 30px rgba(15, 27, 61, 0.6);
+        box-shadow: 0 8px 30px rgba(8, 14, 34, 0.6);
         transform: translateY(-2px);
     }
     .btn-navy > * {
