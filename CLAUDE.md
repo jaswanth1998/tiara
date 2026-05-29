@@ -55,7 +55,7 @@ src/
 - **Name:** Tiara Kebabs & More
 - **Address:** 640 Brookline Drive, Unit 103, Bedford, Nova Scotia
 - **Phone:** 902-835-0811
-- **Hours:** Monday–Sunday, 11:00 AM – 9:30 PM
+- **Hours:** Monday–Sunday, 11:00 AM – 9:00 PM
 - **Services:** Dine-in, Takeout, Delivery, Reservations
 
 ## Assets

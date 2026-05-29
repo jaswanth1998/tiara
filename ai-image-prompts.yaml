@@ -1,0 +1,827 @@
+# ============================================================
+# Tiara Kebabs & More — AI Image Generation Prompts
+# ============================================================
+# Style reference:
+#   assests/pics/Main Pictures/ChatGPT Image Apr 6, 2026, 02_15_16 PM.png
+#   (and every other image in that folder)
+#
+# Purpose: Generate missing menu photography in the EXACT same
+#          style as the client's approved reference set.
+#
+# How to use (ChatGPT / DALL·E / Midjourney / Flux / Gemini):
+#   1. ALSO UPLOAD one of the reference images from
+#      `assests/pics/Main Pictures/` as a visual style reference
+#      whenever the tool supports image input. This is the single
+#      most important step for consistency.
+#   2. Copy `style_guide.base_prompt` + the item's `prompt`
+#      into the text prompt.
+#   3. Append `style_guide.negative_prompt` if the tool supports it.
+#   4. Use the aspect ratio + technical settings below.
+#   5. Save as: public/images/food/<item-id>-lg.webp
+#      (plus -md.webp, -sm.webp, -md.jpg variants).
+# ============================================================
+
+meta:
+  restaurant: Tiara Kebabs & More
+  cuisine: Persian / Iranian
+  location: Bedford, Nova Scotia
+  reference_folder: assests/pics/Main Pictures/
+  hero_reference: ChatGPT Image Apr 6, 2026, 02_15_16 PM.png
+  target_resolution: 2048x2560 minimum (portrait)
+  aspect_ratio_single_dish: "3:4 (portrait)"
+  aspect_ratio_family_platter: "4:3 (landscape)"
+  aspect_ratio_drink: "3:4 (portrait)"
+  output_format: WebP (or PNG then convert)
+
+# ------------------------------------------------------------
+# STYLE GUIDE — paste this in front of EVERY item prompt.
+# Locked to the client's approved reference photography.
+# ------------------------------------------------------------
+style_guide:
+  base_prompt: >
+    Ultra-realistic professional restaurant food photography,
+    editorial magazine quality, shot on a full-frame DSLR with a
+    50mm f/1.8 lens. Styled on a dark textured stone surface —
+    near-black charcoal marble with subtle warm-brown veining and
+    natural cracks catching the light. The background is moody,
+    deep, and atmospheric with rich negative space.
+    Dramatic directional side-lighting from the upper-right casts
+    warm golden highlights on the food and deep, soft shadows
+    across the stone. High contrast, rich saturated colors,
+    cinematic color grading with crushed blacks and glowing
+    warm mid-tones. Shot from a three-quarter overhead angle
+    (roughly 45 to 55 degrees), dish positioned slightly
+    off-center for composition, camera tilted slightly to show
+    the food's height and dimension.
+    Plating is on a matte black rectangular ceramic plate with
+    ribbed / fluted edges (for hero dishes) or in a matte black
+    round ceramic bowl with a fluted rim (for bowls, stews,
+    sides). Every kebab or grilled main also includes these
+    signature garnishes arranged beside the hero item: one
+    blistered charred cherry tomato, one long charred green
+    chili pepper, a small bunch of fresh basil leaves, two or
+    three raw red onion rings, and a bright yellow lemon wedge.
+    For kebab/grill dishes, add a companion small matte black
+    round plate holding a neat half-dome of saffron-orange
+    basmati rice plus two tiny round ramekins — one filled with
+    red tomato sauce, one with creamy pale-green yogurt-herb
+    sauce. Focus is tack-sharp on the hero food with a softly
+    blurred background. No humans, no hands, no text, no logos,
+    no watermarks, no captions.
+
+  negative_prompt: >
+    cartoon, illustration, 3D render, CGI, stylized, anime,
+    painterly, plastic-looking food, over-processed, HDR halos,
+    fake steam, fake glow, oversaturated neon colors, vignette,
+    fisheye, tilted horizon line, cluttered background, busy
+    tablecloths, patterned wallpaper behind the plate, wooden
+    cutting boards, rustic picnic look, bright daylight, flat
+    even lighting, soft-box studio flat look, human hands,
+    fingers, arms, people, faces, chef coats, text, watermarks,
+    logos, captions, price tags, labels, utensils mid-use,
+    spilled sauce, dripping mess, wilted herbs, burnt black
+    edges, raw-looking meat, undercooked, fake-looking garnish,
+    AI artifacts, extra fingers, distorted geometry, low
+    resolution, grain, noise, blurry subject, jpeg compression.
+
+  technical:
+    camera: "Full-frame DSLR / mirrorless, 50mm f/1.8 prime"
+    lighting: "Hard directional side-light from upper-right, warm color temperature (~3200K), deep shadow fall-off on the left"
+    surface: "Dark textured stone — charcoal-black marble with subtle warm-brown veining and hairline cracks"
+    plate_main: "Matte black rectangular ceramic plate with ribbed / fluted edges"
+    plate_bowl: "Matte black round ceramic bowl with a fluted rim"
+    companion_plate: "Small matte black round plate for rice + sauce ramekins (kebab dishes only)"
+    color_grade: "Cinematic — crushed blacks, warm glowing highlights, rich saturation, high contrast"
+    composition: "Hero dish slightly off-center, 3/4 overhead angle (45-55°), dark negative space occupies 30-40% of frame"
+    post: "Natural sharpening, no Instagram filter look, true-to-life but punchy food color"
+
+  signature_garnish_kit:
+    always_present_for_grills:
+      - "one blistered charred cherry tomato"
+      - "one long charred green chili pepper"
+      - "small bunch of fresh basil leaves"
+      - "two to three raw red onion rings"
+      - "one bright yellow lemon wedge"
+    kebab_companion_plate:
+      - "small matte black round plate"
+      - "half-dome of saffron-orange basmati rice (sometimes with a single crispy tahdig ball)"
+      - "tiny ramekin of red tomato sauce"
+      - "tiny ramekin of creamy green yogurt-herb sauce"
+
+  brand_cues:
+    primary_navy: "#0F1B3D"
+    accent_gold: "#C5A55A"
+    notes: >
+      Matte black plating reads as premium and lets saffron/gold
+      food tones pop — this echoes the navy + gold brand palette
+      without literally using navy plates. Warm golden highlights
+      on the food act as the accent color.
+
+# ------------------------------------------------------------
+# PROMPT TEMPLATE — exactly what to send to the image model
+# ------------------------------------------------------------
+prompt_template: |
+  <style_guide.base_prompt>
+
+  Subject: <item.prompt>
+
+  Negative: <style_guide.negative_prompt>
+
+  Aspect ratio: <item.aspect_ratio>
+
+chatgpt_dalle_example: |
+  Use this exact style (match the attached reference photo):
+  ultra-realistic editorial food photography on a dark textured
+  charcoal-marble stone surface, hard warm side-light from the
+  upper-right, 3/4 overhead angle, matte black ribbed rectangular
+  plate, cinematic crushed-black background, rich warm
+  highlights, tack-sharp focus.
+
+  Subject: <paste item.prompt here>
+
+  Signature garnish (must be present for grills): charred cherry
+  tomato, charred long green chili, fresh basil bunch, red onion
+  rings, lemon wedge, companion matte black plate with saffron
+  rice half-dome and two tiny ramekins of red and green sauce.
+
+  No people, no hands, no text, no watermarks. 3:4 portrait
+  aspect ratio.
+
+midjourney_example: |
+  <style_guide.base_prompt> <item.prompt>
+  --ar 3:4 --style raw --v 7 --s 250 --q 2
+  --no cartoon, illustration, 3d, plastic, text, watermark,
+  logo, hands, people, flat lighting, wood background,
+  cluttered, tilted
+
+# ------------------------------------------------------------
+# MENU ITEMS — prompts for every dish currently missing a photo
+# ------------------------------------------------------------
+items:
+
+  # -------- STARTERS --------
+  - id: yogurt-persian-shallots
+    name: Yogurt and Persian Shallots (Mast-o-Moosir)
+    category: Starters
+    file_path: public/images/food/yogurt-persian-shallots
+    aspect_ratio: "3:4"
+    prompt: >
+      A matte black round fluted ceramic bowl filled with thick,
+      creamy Persian yogurt (mast-o-moosir), finely chopped dark
+      purple Persian shallots swirled through the top, a glossy
+      drizzle of amber olive oil pooling in the center, a pinch
+      of dried mint dusted across, and a single fresh mint sprig
+      placed at the edge. The bowl sits on the dark textured
+      stone surface. A torn piece of warm sangak flatbread
+      resting just beside the bowl. Hard warm side-light,
+      3/4 overhead angle.
+
+  - id: crispy-coated-fries
+    name: Crispy Coated Fries
+    category: Starters
+    file_path: public/images/food/crispy-coated-fries
+    aspect_ratio: "3:4"
+    prompt: >
+      A generous pile of golden-crisp seasoned coated fries,
+      each fry glistening, dusted with paprika and sea salt,
+      stacked high on a matte black ribbed rectangular plate.
+      A small round matte black ramekin of garlic aioli and a
+      second ramekin of spicy red ketchup on the same plate.
+      A sprig of parsley on top of the fries. Dark stone
+      surface, dramatic warm side-light.
+
+  - id: hummus
+    name: Hummus
+    category: Starters
+    file_path: public/images/food/hummus
+    aspect_ratio: "3:4"
+    prompt: >
+      A matte black round fluted ceramic bowl holding silky
+      smooth hummus swirled into a classic spiral well, filled
+      with a golden pool of olive oil in the center, sprinkled
+      with sumac and smoked paprika, topped with whole
+      chickpeas and chopped parsley. Warm triangular pita
+      wedges fanned on the dark stone surface beside the bowl,
+      with a single lemon wedge.
+
+  - id: kashke-bademjan
+    name: Kashke Bademjan
+    category: Starters
+    file_path: public/images/food/kashke-bademjan
+    aspect_ratio: "3:4"
+    prompt: >
+      A matte black round fluted ceramic bowl of Persian kashke
+      bademjan — golden-brown mashed fried eggplant — drizzled
+      generously with creamy white kashk (dried yogurt paste)
+      in a zigzag pattern, topped with crispy golden fried
+      onions, crushed walnuts, and a dusting of dried mint
+      powder. A small piece of warm sangak bread on the dark
+      stone beside the bowl. Dramatic warm side-light.
+
+  - id: tiara-spiced-wings
+    name: Tiara Spiced Wings
+    category: Starters
+    file_path: public/images/food/tiara-spiced-wings
+    aspect_ratio: "3:4"
+    prompt: >
+      Six beautifully charred chicken wings arranged on a matte
+      black ribbed rectangular plate — three coated in glossy
+      golden saffron-yogurt glaze, three coated in deep green
+      za'atar spice crust. Wings glisten with juicy highlights
+      and visible char marks. Signature garnish: a charred
+      cherry tomato, one long charred green chili, a small
+      bunch of fresh basil, red onion rings, and a lemon
+      wedge. A small matte black round ramekin of creamy
+      garlic-yogurt sauce on the same plate. Dark stone surface.
+
+  - id: persian-stew-tahdig
+    name: Persian Stew & Tahdig
+    category: Starters
+    file_path: public/images/food/persian-stew-tahdig
+    aspect_ratio: "3:4"
+    prompt: >
+      A matte black ribbed rectangular plate featuring a
+      golden-crispy round disc of Persian tahdig (saffron rice
+      crust) on one side, its crust catching the light with
+      visible crunchy texture. Beside it sits a small matte
+      black fluted bowl of rich dark green ghormeh sabzi stew
+      with lamb chunks, red kidney beans, and dried lime
+      visible. A sprig of fresh parsley garnish. Dark stone
+      surface, dramatic warm side-light, 3/4 overhead angle.
+
+  - id: barley-soup
+    name: Barley Soup (Soup-e Jo)
+    category: Starters
+    file_path: public/images/food/barley-soup
+    aspect_ratio: "3:4"
+    prompt: >
+      A matte black round fluted ceramic bowl filled with creamy
+      Persian barley soup (soup-e jo), pearl barley grains and
+      tender diced carrots and celery visible, finished with a
+      zigzag drizzle of cream and a dusting of dried mint and
+      cracked black pepper. A lemon wedge and a small torn
+      piece of sangak bread on the dark stone beside the bowl.
+      Warm side-light, faint wisp of steam.
+
+  - id: tiara-royal-mezze-platter
+    name: Tiara Royal Mezze Platter
+    category: Starters
+    file_path: public/images/food/tiara-royal-mezze-platter
+    aspect_ratio: "4:3"
+    prompt: >
+      A large matte black round ceramic serving platter styled
+      overhead for four to five guests — five small matte black
+      fluted ramekins arranged around the edge holding Mirza
+      Ghasemi (orange-red eggplant), Kashke Bademjan (cream-
+      topped golden eggplant), silky hummus with olive oil,
+      marinated olives with pomegranate arils, and creamy
+      yogurt with Persian shallots. In the center: a stack of
+      warm triangular pita and folded sangak bread. Garnish
+      scattered between ramekins: fresh basil, parsley sprigs,
+      lemon wedges, radish slices. Dark stone surface, warm
+      side-light from upper-right, opulent abundance.
+
+  # -------- SALADS --------
+  - id: caesar-salad
+    name: Caesar Salad
+    category: Salads
+    file_path: public/images/food/caesar-salad
+    aspect_ratio: "3:4"
+    prompt: >
+      A matte black round fluted ceramic bowl piled with crisp
+      romaine lettuce leaves tossed in creamy Caesar dressing,
+      topped with golden-toasted garlic croutons, generous
+      ribbons of shaved parmesan, cracked black pepper, a few
+      anchovy fillets on top, and a lemon wedge at the edge.
+      Dark stone surface, dramatic warm side-light.
+
+  - id: shirazi-salad
+    name: Shirazi Salad
+    category: Salads
+    file_path: public/images/food/shirazi-salad
+    aspect_ratio: "3:4"
+    prompt: >
+      A matte black round fluted ceramic bowl filled with
+      refreshing Persian Shirazi salad — finely diced red
+      tomato, cucumber, and white onion, glistening with olive
+      oil and fresh lemon juice, scattered with dried mint and
+      chopped parsley. Vibrant red-green-white colors against
+      the dark stone surface. Warm side-light.
+
+  # -------- GRILLS & KEBABS --------
+  - id: kebab-sultani
+    name: Kebab Sultani
+    category: Grills & Kebabs
+    file_path: public/images/food/kebab-sultani
+    aspect_ratio: "4:3"
+    prompt: >
+      A long matte black ribbed rectangular plate holding the
+      royal kebab sultani — one long skewer of tender juicy
+      lamb fillet (barg), deeply char-marked and glossy,
+      alongside one long skewer of ground lamb koobideh, both
+      laid directly on the plate (skewers visible). Signature
+      garnish arranged beside the kebabs: one blistered charred
+      cherry tomato, one long charred green chili, a bunch of
+      fresh basil, red onion rings, and a lemon wedge.
+      Companion small matte black round plate beside the main
+      plate holding a neat half-dome of saffron-orange basmati
+      rice and two tiny ramekins — one red tomato sauce, one
+      creamy green yogurt-herb sauce. Dark stone surface,
+      hard warm side-light, 3/4 overhead angle.
+
+  - id: kebab-torsh
+    name: Kebab Torsh
+    category: Grills & Kebabs
+    file_path: public/images/food/kebab-torsh
+    aspect_ratio: "4:3"
+    prompt: >
+      A matte black ribbed rectangular plate with one long
+      skewer of deeply marinated lamb fillet glazed in a glossy
+      dark pomegranate-walnut sauce, char-marked and juicy,
+      scattered with pomegranate arils and crushed walnuts.
+      Signature garnish beside it: charred cherry tomato,
+      charred green chili, fresh basil bunch, red onion rings,
+      lemon wedge. Companion matte black round plate with
+      saffron rice half-dome and two tiny ramekins of red and
+      green sauce. Dark stone surface, dramatic warm side-light.
+
+  - id: kebab-vaziri
+    name: Kebab Vaziri
+    category: Grills & Kebabs
+    file_path: public/images/food/kebab-vaziri
+    aspect_ratio: "4:3"
+    prompt: >
+      A matte black ribbed rectangular plate holding one skewer
+      of golden saffron-marinated grilled chicken kebab next to
+      one skewer of ground lamb koobideh, both char-marked,
+      glossy, and juicy. Signature garnish: charred cherry
+      tomato, long charred green chili, fresh basil bunch, red
+      onion rings, lemon wedge. Companion small matte black
+      round plate with a half-dome of saffron basmati rice
+      topped with a single crispy tahdig ball, plus two tiny
+      ramekins of red tomato sauce and green yogurt-herb
+      sauce. Dark stone surface, hard warm side-light.
+
+  # -------- FAMILY KEBABS --------
+  - id: royal-kebab-duo
+    name: Royal Kebab Duo
+    category: Family Kebabs
+    file_path: public/images/food/royal-kebab-duo
+    aspect_ratio: "4:3"
+    prompt: >
+      An overhead-angled hero shot of a large matte black oval
+      ribbed serving platter loaded with two skewers of ground
+      lamb koobideh, one skewer of golden grilled chicken
+      breast, and one skewer of grilled chicken leg, all
+      freshly char-marked. Two generous half-domes of saffron
+      basmati rice on either side of the kebabs. Signature
+      garnish scattered between: two charred cherry tomatoes,
+      two long charred green chilies, bunches of fresh basil,
+      red onion rings, lemon wedges. Two tiny ramekins — red
+      tomato sauce and green yogurt-herb sauce — tucked in.
+      Dark stone surface, dramatic warm side-light. Abundant
+      feast for two to three.
+
+  - id: tiara-kebab-medley
+    name: Tiara Kebab Medley
+    category: Family Kebabs
+    file_path: public/images/food/tiara-kebab-medley
+    aspect_ratio: "4:3"
+    prompt: >
+      A massive matte black oval ribbed serving platter styled
+      overhead, overflowing with four long skewers of ground
+      lamb koobideh, one pomegranate-glazed kebab torsh skewer,
+      one grilled chicken breast skewer, and one grilled
+      chicken leg skewer — all glossy with char marks. Four
+      half-domes of saffron basmati rice placed around the
+      edges. Signature garnish scattered throughout: multiple
+      charred cherry tomatoes, long charred green chilies,
+      bunches of fresh basil, red onion rings, lemon wedges.
+      Small ramekins of red tomato sauce and green yogurt
+      sauce tucked in. A royal feast for four to five, dark
+      stone surface, dramatic warm side-light, luxurious.
+
+  - id: royal-meat-feast
+    name: Royal Meat Feast
+    category: Family Kebabs
+    file_path: public/images/food/royal-meat-feast
+    aspect_ratio: "4:3"
+    prompt: >
+      An opulent overhead-angled shot of a huge matte black
+      round ribbed serving platter loaded with four skewers of
+      ground lamb koobideh, one skewer of grilled lamb chops
+      (five bone-in pieces), one skewer of lamb fillet barg,
+      and one pomegranate-glazed kebab torsh. Four half-domes
+      of saffron basmati rice around the edges. Signature
+      garnish scattered in: charred cherry tomatoes, long
+      charred green chilies, fresh basil, red onion rings,
+      lemon wedges. Tiny ramekins of red tomato sauce and
+      green yogurt-herb sauce tucked between the skewers.
+      Dark stone surface, hard warm side-light. A meat feast
+      for four to five.
+
+  - id: royal-chicken-feast
+    name: Royal Chicken Feast
+    category: Family Kebabs
+    file_path: public/images/food/royal-chicken-feast
+    aspect_ratio: "4:3"
+    prompt: >
+      A large matte black round ribbed serving platter styled
+      overhead with four skewers of ground lamb koobideh, one
+      skewer of golden grilled chicken breast, one skewer of
+      grilled chicken leg, plus a generous pile of twelve
+      glossy chicken wings — six coated in golden saffron
+      glaze, six coated in deep green za'atar. Four half-domes
+      of saffron basmati rice placed around the edges.
+      Signature garnish scattered: charred cherry tomatoes,
+      long charred green chilies, fresh basil bunches, red
+      onion rings, lemon wedges. Tiny ramekins of red and
+      green sauces. Dark stone surface, dramatic warm
+      side-light, feast for four to five.
+
+  # -------- BREADS --------
+  - id: tandoori-roti
+    name: Tandoori Roti
+    category: Breads
+    file_path: public/images/food/tandoori-roti
+    aspect_ratio: "3:4"
+    prompt: >
+      A fresh hot round tandoori roti laid on a matte black
+      ribbed rectangular plate, blistered with dark char spots
+      from the clay oven, torn slightly at one edge to reveal
+      the soft fluffy interior. A small matte black round
+      ramekin of melted ghee or butter on the same plate. Dark
+      stone surface, dramatic warm side-light, faint steam.
+
+  - id: tandoori-garlic-naan
+    name: Tandoori Garlic Naan
+    category: Breads
+    file_path: public/images/food/tandoori-garlic-naan
+    aspect_ratio: "3:4"
+    prompt: >
+      A golden teardrop-shaped tandoori garlic naan on a matte
+      black ribbed rectangular plate, topped with minced
+      garlic, fresh chopped coriander, and glistening melted
+      butter. Dark char spots from the tandoor. A small matte
+      black ramekin of melted butter on the same plate. Dark
+      stone surface, warm side-light.
+
+  - id: tafton-bread
+    name: Tafton Bread
+    category: Breads
+    file_path: public/images/food/tafton-bread
+    aspect_ratio: "3:4"
+    prompt: >
+      A large round traditional Persian tafton flatbread, its
+      distinctive ribbed surface pattern glowing golden-brown
+      with a slightly crisp crust, sprinkled with black nigella
+      seeds and white sesame seeds. Torn in half to reveal the
+      airy crumb. Resting on the dark stone surface. Warm
+      side-light.
+
+  # -------- DESSERTS --------
+  - id: baklava-cheese-cake
+    name: Baklava Cheese Cake
+    category: Desserts
+    file_path: public/images/food/baklava-cheese-cake
+    aspect_ratio: "3:4"
+    prompt: >
+      A single elegant slice of baklava cheesecake plated on a
+      small matte black round ceramic dessert plate — creamy
+      white cheesecake base topped with a golden flaky phyllo
+      pastry layer and generously crushed pistachios, drizzled
+      with amber honey syrup pooling on the plate. Garnish:
+      a fresh mint leaf and a scatter of dried rose petals.
+      Dark stone surface, dramatic warm side-light, glossy
+      syrup catching the highlight.
+
+  # -------- SIDES --------
+  - id: saffron-rice
+    name: Saffron Rice
+    category: Sides
+    file_path: public/images/food/saffron-rice
+    aspect_ratio: "3:4"
+    prompt: >
+      A tall fluffy half-dome of Persian basmati rice on a
+      matte black round fluted ceramic plate, streaked with
+      bright saffron-orange grains on top, a small pat of
+      butter melting down the side creating a golden pool. A
+      pinch of whole saffron threads as garnish. Each long
+      rice grain distinct. Dark stone surface, warm side-light.
+
+  - id: koobideh-skewer
+    name: Koobideh (1 Skewer)
+    category: Sides
+    file_path: public/images/food/koobideh-skewer
+    aspect_ratio: "3:4"
+    prompt: >
+      A single long flat skewer of ground lamb-and-beef
+      koobideh kebab, char-marked and glossy, laid diagonally
+      across a matte black ribbed rectangular plate. Signature
+      garnish: one charred cherry tomato, a long charred green
+      chili, a few red onion rings, a lemon wedge, a sprig of
+      fresh basil. Dark stone surface, dramatic warm
+      side-light, minimal clean composition.
+
+  - id: chicken-skewer
+    name: Chicken (1 Skewer)
+    category: Sides
+    file_path: public/images/food/chicken-skewer
+    aspect_ratio: "3:4"
+    prompt: >
+      A single skewer of golden saffron-yogurt marinated grilled
+      chicken pieces, glossy with char marks, laid diagonally
+      across a matte black ribbed rectangular plate. Signature
+      garnish: charred cherry tomato, long charred green chili,
+      red onion rings, lemon wedge, fresh basil sprig. Dark
+      stone surface, warm side-light.
+
+  - id: barg-skewer
+    name: Barg (1 Skewer)
+    category: Sides
+    file_path: public/images/food/barg-skewer
+    aspect_ratio: "3:4"
+    prompt: >
+      A single long skewer of thinly sliced juicy veal fillet
+      barg kebab, char-marked and glistening with saffron
+      glaze, laid diagonally across a matte black ribbed
+      rectangular plate. Signature garnish: charred cherry
+      tomato, long charred green chili, red onion rings, lemon
+      wedge, fresh basil. Dark stone surface, hard warm
+      side-light.
+
+  - id: torsh-skewer
+    name: Torsh (1 Skewer)
+    category: Sides
+    file_path: public/images/food/torsh-skewer
+    aspect_ratio: "3:4"
+    prompt: >
+      A single long skewer of pomegranate-walnut marinated lamb
+      fillet torsh kebab, glossy with dark deep-red glaze,
+      scattered with pomegranate arils, laid diagonally across
+      a matte black ribbed rectangular plate. Signature
+      garnish: charred cherry tomato, long charred green chili,
+      red onion rings, lemon wedge, basil sprig. Dark stone
+      surface, warm side-light.
+
+  - id: lamb-chops-skewer
+    name: Lamb Chops (1 Skewer)
+    category: Sides
+    file_path: public/images/food/lamb-chops-skewer
+    aspect_ratio: "3:4"
+    prompt: >
+      One skewer of five grilled Nova Scotia lamb chops with
+      bones, perfect medium-rare pink interior visible, glossy
+      char on the exterior, laid diagonally across a matte
+      black ribbed rectangular plate. Signature garnish:
+      charred cherry tomato, long charred green chili, red
+      onion rings, lemon wedge, fresh rosemary sprig, flaked
+      sea salt. Dark stone surface, dramatic warm side-light.
+
+  - id: fava-bean-rice
+    name: Fava Bean Rice
+    category: Sides
+    file_path: public/images/food/fava-bean-rice
+    aspect_ratio: "3:4"
+    prompt: >
+      A half-dome of fluffy Persian basmati rice studded with
+      bright green fava beans and chopped fresh dill on a matte
+      black round fluted ceramic plate, a pat of butter melting
+      on top into a golden pool. Each rice grain distinct,
+      vibrant green and warm yellow colors. Dark stone surface,
+      warm side-light.
+
+  - id: tahchin
+    name: Crispy Saffron Rice (Tahchin)
+    category: Sides
+    file_path: public/images/food/tahchin
+    aspect_ratio: "3:4"
+    prompt: >
+      Four golden-crispy triangular wedges of Persian tahchin —
+      saffron-yogurt rice cake with a crackling deep-gold crust
+      — fanned on a matte black ribbed rectangular plate. A
+      small matte black round ramekin of ruby-red barberry
+      (zereshk) compote, scattered crushed pistachios, and a
+      few saffron threads as garnish. Dark stone surface,
+      dramatic warm side-light.
+
+  # -------- DRINKS --------
+  - id: soft-drink
+    name: Soft Drink
+    category: Drinks
+    file_path: public/images/food/soft-drink
+    aspect_ratio: "3:4"
+    prompt: >
+      A tall slim stemless glass filled with dark amber
+      cola-style soft drink over ice cubes, heavy condensation
+      beading on the outside of the glass, bubbles rising,
+      a slim lemon slice perched on the rim. Shot at a slight
+      side angle (not overhead). Dark textured stone surface,
+      dramatic warm side-light creating glowing highlights on
+      the glass. Moody background.
+
+  - id: water
+    name: Water
+    category: Drinks
+    file_path: public/images/food/water
+    aspect_ratio: "3:4"
+    prompt: >
+      A tall clear stemless glass of ice water with a lemon
+      wheel and fresh mint sprig, condensation glistening on
+      the glass. Shot at a slight side angle. Dark textured
+      stone surface, dramatic warm side-light, minimal clean
+      styling, moody atmosphere.
+
+  - id: sparkling-water
+    name: Sparkling Water
+    category: Drinks
+    file_path: public/images/food/sparkling-water
+    aspect_ratio: "3:4"
+    prompt: >
+      A tall stemless clear glass of sparkling water with
+      visible effervescent bubbles rising, a lemon wheel and
+      fresh mint sprig garnish, heavy condensation on the
+      glass. Shot at a slight side angle. Dark textured stone
+      surface, dramatic warm side-light, moody.
+
+  - id: delster
+    name: Delster (Malt Beverage)
+    category: Drinks
+    file_path: public/images/food/delster
+    aspect_ratio: "3:4"
+    prompt: >
+      A tall chilled stemless glass of golden non-alcoholic
+      Persian malt beverage topped with a thick creamy white
+      foam head, condensation dripping down the glass, bubbles
+      fizzing inside. An unlabeled amber-glass bottle softly
+      blurred behind it. Shot at a slight side angle. Dark
+      textured stone surface, dramatic warm side-light.
+
+  # -------- HOT BAR --------
+  - id: tea
+    name: Tea
+    category: Hot Bar
+    file_path: public/images/food/tea
+    aspect_ratio: "3:4"
+    prompt: >
+      A traditional Persian tea setup on a matte black round
+      saucer — a small clear glass estekan filled with deep
+      amber black tea, a gold-rimmed edge, a single sugar cube
+      (qand) beside it on the saucer, a delicate curl of steam
+      rising. A brass samovar softly blurred in the background.
+      Dark textured stone surface, dramatic warm side-light,
+      moody atmosphere.
+
+  - id: coffee
+    name: Coffee
+    category: Hot Bar
+    file_path: public/images/food/coffee
+    aspect_ratio: "3:4"
+    prompt: >
+      A classic white porcelain coffee cup on a matte black
+      round saucer filled with rich dark brewed coffee, a
+      gentle curl of steam rising, a small biscotti beside the
+      cup, a few dark roasted coffee beans scattered on the
+      saucer. Dark textured stone surface, dramatic warm
+      side-light.
+
+  - id: espresso
+    name: Espresso
+    category: Hot Bar
+    file_path: public/images/food/espresso
+    aspect_ratio: "3:4"
+    prompt: >
+      A small white porcelain espresso cup on a matte black
+      round saucer, holding a freshly pulled shot of espresso
+      with a perfect golden crema on top. A tiny silver spoon
+      beside it, a few dark roasted coffee beans scattered on
+      the saucer. Dark textured stone surface, dramatic warm
+      side-light.
+
+  - id: americano
+    name: Americano
+    category: Hot Bar
+    file_path: public/images/food/americano
+    aspect_ratio: "3:4"
+    prompt: >
+      A tall white porcelain mug of Americano coffee — rich
+      dark brew with a thin ring of crema — steam curling
+      gently upward, on a matte black round saucer with a
+      small biscotti beside it. Dark textured stone surface,
+      dramatic warm side-light illuminating the rising steam.
+
+  - id: cappuccino
+    name: Cappuccino
+    category: Hot Bar
+    file_path: public/images/food/cappuccino
+    aspect_ratio: "3:4"
+    prompt: >
+      A classic cappuccino in a white porcelain cup on a matte
+      black round saucer, topped with velvety microfoam and
+      elegant rosetta latte art, dusted with cocoa powder. A
+      tiny almond biscotti on the saucer. Dark textured stone
+      surface, dramatic warm side-light.
+
+  # -------- LUNCH MENU --------
+  - id: chicken-koobideh-wrap
+    name: Chicken Koobideh Wrap
+    category: Lunch Menu
+    file_path: public/images/food/chicken-koobideh-wrap
+    aspect_ratio: "3:4"
+    prompt: >
+      A warm Persian lavash wrap sliced diagonally in half and
+      stacked on a matte black ribbed rectangular plate,
+      revealing the filling — juicy ground chicken koobideh,
+      fresh parsley, sumac-dusted red onions, grilled tomato
+      slice, and a drizzle of creamy yogurt sauce. Signature
+      garnish: a charred cherry tomato, a lemon wedge, red
+      onion rings, and fresh basil. A small ramekin of green
+      yogurt-herb sauce. Dark stone surface, dramatic warm
+      side-light.
+
+  - id: koobideh-wrap
+    name: Koobideh Wrap
+    category: Lunch Menu
+    file_path: public/images/food/koobideh-wrap
+    aspect_ratio: "3:4"
+    prompt: >
+      A warm Persian lavash wrap sliced diagonally in half and
+      stacked on a matte black ribbed rectangular plate,
+      revealing juicy ground lamb-and-beef koobideh, fresh
+      parsley, sumac-dusted red onions, grilled tomato slice,
+      and a yogurt drizzle. Signature garnish: charred cherry
+      tomato, lemon wedge, red onion rings, fresh basil. A
+      small ramekin of green yogurt-herb sauce. Dark stone
+      surface, warm side-light.
+
+  - id: lunch-fries
+    name: Crispy Coated Fries (Lunch)
+    category: Lunch Menu
+    file_path: public/images/food/lunch-fries
+    aspect_ratio: "3:4"
+    prompt: >
+      A matte black ribbed rectangular plate piled with
+      golden-crisp coated fries dusted with paprika and sea
+      salt, a small matte black round ramekin of garlic aioli
+      on the same plate. A sprig of parsley on top of the
+      fries. Dark stone surface, dramatic warm side-light.
+
+  - id: lunch-wings
+    name: Chicken Wings (6pcs)
+    category: Lunch Menu
+    file_path: public/images/food/lunch-wings
+    aspect_ratio: "3:4"
+    prompt: >
+      Six glossy char-marked chicken wings — a mix of
+      saffron-glazed golden wings and deep-green za'atar wings
+      — arranged on a matte black ribbed rectangular plate.
+      Signature garnish: charred cherry tomato, long charred
+      green chili, red onion rings, lemon wedge, fresh basil.
+      A small matte black round ramekin of creamy garlic sauce
+      on the plate. Dark stone surface, dramatic warm
+      side-light.
+
+  - id: mozzarella-sticks
+    name: Mozzarella Sticks (5pcs)
+    category: Lunch Menu
+    file_path: public/images/food/mozzarella-sticks
+    aspect_ratio: "3:4"
+    prompt: >
+      Five golden-crisp breaded mozzarella sticks on a matte
+      black ribbed rectangular plate — one broken in half
+      showing the melty stretching cheese. A small matte black
+      round ramekin of red marinara sauce on the plate, garnish
+      of fresh basil leaves. Dark stone surface, dramatic warm
+      side-light.
+
+# ------------------------------------------------------------
+# WORKFLOW TIPS
+# ------------------------------------------------------------
+workflow:
+  recommended_approach: >
+    Use ChatGPT (GPT-5 with image) or Gemini and ATTACH one of
+    the reference images from `assests/pics/Main Pictures/` as
+    a visual style reference for EVERY prompt. This is the
+    single biggest lever for style consistency. Then paste the
+    base_prompt + item.prompt text together.
+
+  tools_ranked_for_this_style:
+    - "ChatGPT (GPT-5 native image) — upload reference + prompt, best style-matching to this exact look"
+    - "Google Gemini 2.5 / Imagen 4 — strong with attached reference images"
+    - "Midjourney v7 — use --sref with reference image URL + --style raw"
+    - "Flux.1 Pro Ultra (with Redux/IP-Adapter) — excellent food realism"
+    - "DALL·E 3 — works for single items but weaker at matching a specific style"
+
+  consistency_tips:
+    - "Generate the ENTIRE missing set in one session on one tool to keep color grade and lighting consistent."
+    - "Always attach the SAME reference image as style reference across every generation so lighting and surface match."
+    - "For kebab dishes, include the signature_garnish_kit explicitly — it is the visual signature of this brand."
+    - "Generate 3-4 variants per item and pick the one where plate material, lighting direction, and surface texture match the reference best."
+    - "If a result lands on wood or a pale surface, regenerate — the dark stone is mandatory."
+
+  post_processing:
+    - "Export at 2048px on the long edge minimum (prefer 3072px)."
+    - "Create sizes: -lg (2048w), -md (1024w), -sm (512w)."
+    - "Convert to WebP for -lg/-md/-sm and keep a JPG fallback at -md."
+    - "Place in public/images/food/ following the existing naming pattern."
+    - "Update src/data/menu.ts to add `image: '/images/food/<id>'` on each item."

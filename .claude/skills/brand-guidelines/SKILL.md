@@ -7,7 +7,8 @@ description: Applies Tiara Kebabs & More official brand colors, typography, and 
 
 ## Overview
 
-Official brand identity and design system for Tiara Kebabs & More, a premium Persian/Iranian restaurant in Bedford, Nova Scotia. Apply these guidelines to all visual artifacts — web pages, components, documents, presentations, social media, and marketing materials.
+Official brand identity and design system for Tiara Kebabs & More, a premium Persian/Iranian restaurant in Bedford, Nova Scotia.
+Apply these guidelines to all visual artifacts — web pages, components, documents, presentations, social media, and marketing materials.
 
 **Keywords**: branding, corporate identity, visual identity, styling, brand colors, typography, Tiara brand, visual formatting, visual design, Persian restaurant, navy gold, luxury dining
 
@@ -77,12 +78,12 @@ background: linear-gradient(135deg, #E8D48B, #C5A55A, #A8893E);
 ### Typography
 
 - **Headings:** Playfair Display (serif, luxury) — with Georgia fallback
-- **Body/UI:** Inter (clean sans-serif) — with system-ui fallback
+- **Body/UI:** Lora (clean sans-serif) — with system-ui fallback
 - **Accent/Descriptions:** Cormorant Garamond italic — with Georgia fallback
 
 **Tailwind utility classes:**
 - `font-display` — Playfair Display for all headings (h1-h6), section titles, hero text
-- `font-sans` — Inter for paragraphs, buttons, nav links, form labels
+- `font-sans` — Lora for paragraphs, buttons, nav links, form labels
 - `font-accent` — Cormorant Garamond italic for subtitles, descriptions, quotes, taglines
 
 ### Text Styling
@@ -135,7 +136,7 @@ All buttons wrap inner text in `<span>` for z-index layering.
 
 - **Address:** 640 Brookline Drive, Unit 103, Bedford, Nova Scotia
 - **Phone:** 902-835-0811
-- **Hours:** Monday–Sunday, 11:00 AM – 9:30 PM
+- **Hours:** Monday–Sunday, 11:00 AM – 9:00 PM
 - **Services:** Dine-in, Takeout, Delivery, Reservations
 
 ## Asset Inventory

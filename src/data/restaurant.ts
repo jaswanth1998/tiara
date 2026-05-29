@@ -5,7 +5,7 @@ export const restaurant: Restaurant = {
   tagline: 'A Journey Through Authentic Persian Cuisine',
   address: '640 Brookline Drive, Unit 103, Bedford, Nova Scotia',
   phone: '902-835-0811',
-  hours: 'Monday – Sunday, 11:00 AM – 9:30 PM',
+  hours: 'Monday – Sunday, 11:00 AM – 9:00 PM',
   services: ['Dine-in', 'Takeout', 'Delivery', 'Reservations'],
   orderUrl: '#', // TODO: Replace with Uber Eats / DoorDash link
   socialMedia: {

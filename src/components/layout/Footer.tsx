@@ -109,7 +109,7 @@ export function Footer() {
                 <div key={day} className="flex items-center justify-between text-sm">
                   <span className="text-gold-300/70">{day}</span>
                   <span className="mx-2 flex-1 border-b border-dotted border-gold-500/10" />
-                  <span className="text-gold-300/50">11 AM – 9:30 PM</span>
+                  <span className="text-gold-300/50">11 AM – 9 PM</span>
                 </div>
               ))}
             </div>

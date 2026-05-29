@@ -166,7 +166,7 @@ function SpiritSection() {
                     <div key={day} className="flex items-center justify-between">
                       <span className="font-medium text-gold-300">{day}</span>
                       <span className="flex-1 mx-3 border-b border-dotted border-gold-500/20" />
-                      <span className="text-gold-300/70">11:00 AM – 9:30 PM</span>
+                      <span className="text-gold-300/70">11:00 AM – 9:00 PM</span>
                     </div>
                   ))}
                 </div>
@@ -771,7 +771,7 @@ export function HomePage() {
       <FoodMarqueeStrip />
       <RootedSection />
       <ParallaxQuote />
-      <TestimonialsMarquee />
+      {/* <TestimonialsMarquee /> */}
       <LocationSection />
       <FinalCTA />
     </>
