@@ -13,7 +13,7 @@ const ITEMS: MarqueeItem[] = [
   { src: '/images/ai-food/ai-dish-02-lg.webp', name: 'Doogh' },
   { src: '/images/ai-food/ai-dish-10-lg.webp', name: 'Zereshk Polo' },
   { src: '/images/ai-food/ai-dish-14-lg.webp', name: 'Chocolate Cake' },
-  { src: '/images/ai-food/ai-dish-08-lg.webp', name: 'Lamb Chops' },
+  { src: '/images/ai-food/ai-dish-15-lg.webp', name: 'Lamb Chops' },
   { src: '/images/ai-food/ai-dish-05-lg.webp', name: 'Ghorme Sabzi' },
   { src: '/images/ai-food/ai-dish-12-lg.webp', name: 'Saffron Cake' },
 ]

@@ -122,7 +122,7 @@ export function AboutPage() {
           posterSrc="/videos/food-prep-poster.jpg"
         />
         <img
-          src="/images/ai-food/ai-dish-08-lg.webp"
+          src="/images/ai-food/ai-dish-15-lg.webp"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover"

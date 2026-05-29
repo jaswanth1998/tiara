@@ -193,7 +193,7 @@ function SignaturePlatesGrid() {
   const dishes = [
     { name: 'Kebab Koobideh', price: 25, desc: 'Ground lamb & beef, saffron rice, grilled tomato', img: '/images/ai-food/ai-dish-16-lg.webp' },
     { name: 'Kebab Barg', price: 31, desc: 'Veal fillet mignon, marinated in spices', img: '/images/ai-food/ai-dish-01-lg.webp' },
-    { name: 'Lamb Chops', price: 41, desc: 'Nova Scotia lamb, traditionally seasoned', img: '/images/ai-food/ai-dish-08-lg.webp' },
+    { name: 'Lamb Chops', price: 41, desc: 'Nova Scotia lamb, traditionally seasoned', img: '/images/ai-food/ai-dish-15-lg.webp' },
     { name: 'Grilled Salmon', price: 27, desc: 'Saffron-marinated Atlantic salmon', img: '/images/ai-food/ai-dish-07-lg.webp' },
     { name: 'Ghorme Sabzi', price: 18, desc: 'Rich herb stew with kidney beans & lime', img: '/images/ai-food/ai-dish-05-lg.webp' },
     { name: 'Fesenjan', price: 19, desc: 'Walnut pomegranate stew with chicken', img: '/images/ai-food/ai-dish-03-lg.webp' },

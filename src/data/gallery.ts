@@ -9,7 +9,7 @@ export const galleryImages: GalleryImage[] = [
   { src: '/images/ai-food/ai-dish-05-lg.webp', alt: 'Ghorme sabzi herb stew with saffron rice', category: 'food' },
   { src: '/images/ai-food/ai-dish-06-lg.webp', alt: 'Grilled chicken thigh kebab with rice and condiments', category: 'food' },
   { src: '/images/ai-food/ai-dish-07-lg.webp', alt: 'Grilled salmon kebab with herb rice and fries', category: 'food' },
-  { src: '/images/ai-food/ai-dish-08-lg.webp', alt: 'Lamb chops shishlik with saffron rice', category: 'food' },
+  { src: '/images/ai-food/ai-dish-15-lg.webp', alt: 'Lamb chops shishlik with saffron rice', category: 'food' },
   { src: '/images/ai-food/ai-dish-09-lg.webp', alt: 'Traditional adas polo with fried egg and crispy onions', category: 'food' },
   { src: '/images/ai-food/ai-dish-10-lg.webp', alt: 'Zereshk polo with saffron chicken', category: 'food' },
   { src: '/images/ai-food/ai-dish-11-lg.webp', alt: 'Full spread of Persian dishes from above', category: 'food' },
