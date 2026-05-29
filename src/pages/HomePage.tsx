@@ -3,7 +3,7 @@ import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 import {
   MapPin, Phone, Clock, ChevronDown,
   Flame, Leaf, Heart, Star,
-  Quote, ArrowRight,
+  ArrowRight,
 } from 'lucide-react'
 import { SectionHeading } from '@/components/common/SectionHeading'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
@@ -456,105 +456,6 @@ function RootedSection() {
   )
 }
 
-/* ─── Testimonials Marquee (Amrit-style: continuous horizontal scroll) ─ */
-function TestimonialsMarquee() {
-  const reviews = [
-    {
-      quote: 'The best Persian food in Nova Scotia! The kebab koobideh is absolutely incredible. The flavors are rich and authentic.',
-      author: 'Sarah M.',
-      rating: 5,
-      platform: 'Google',
-    },
-    {
-      quote: 'Beautiful restaurant with amazing food. The lamb chops were cooked to perfection. Will definitely be coming back!',
-      author: 'James R.',
-      rating: 5,
-      platform: 'Google',
-    },
-    {
-      quote: 'Authentic flavors that remind me of home. The ghorme sabzi is a must-try! My family loves this place.',
-      author: 'Maryam K.',
-      rating: 5,
-      platform: 'Google',
-    },
-    {
-      quote: 'Such a gem in Bedford! The zereshk polo is divine. Beautiful ambiance and incredibly friendly staff.',
-      author: 'David L.',
-      rating: 5,
-      platform: 'Uber Eats',
-    },
-    {
-      quote: 'Hands down the best kebabs I have ever had. The saffron rice is perfection. A real treasure for Halifax area.',
-      author: 'Priya S.',
-      rating: 5,
-      platform: 'Google',
-    },
-    {
-      quote: 'The fesenjan blew my mind. Complex, tangy, sweet — just amazing. Service was warm and welcoming too.',
-      author: 'Alex T.',
-      rating: 5,
-      platform: 'DoorDash',
-    },
-  ]
-
-  // Double reviews for seamless infinite scroll
-  const doubled = [...reviews, ...reviews]
-
-  return (
-    <section className="bg-navy-900 py-20 md:py-28 overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 md:px-8">
-        <ScrollReveal>
-          <SectionHeading
-            title="What Our Guests Say"
-            subtitle="Hear from those who've experienced our cuisine"
-          />
-        </ScrollReveal>
-      </div>
-
-      {/* Continuous scrolling marquee */}
-      <div className="relative mt-14">
-        {/* Edge fades */}
-        <div className="absolute left-0 top-0 bottom-0 z-10 w-16 bg-gradient-to-r from-navy-900 to-transparent md:w-32" />
-        <div className="absolute right-0 top-0 bottom-0 z-10 w-16 bg-gradient-to-l from-navy-900 to-transparent md:w-32" />
-
-        <div className="flex animate-marquee gap-6 will-change-transform" style={{ animationDuration: '45s' }}>
-          {doubled.map((review, i) => (
-            <div
-              key={`${review.author}-${i}`}
-              className="group relative w-[340px] shrink-0 overflow-hidden rounded-2xl border border-navy-700/50 bg-navy-800/50 p-6 transition-all duration-500 hover:border-gold-500/30 md:w-[380px]"
-            >
-              {/* Quote mark */}
-              <Quote className="absolute top-4 right-4 h-8 w-8 text-gold-500/10" />
-
-              {/* Stars */}
-              <div className="mb-3 flex gap-0.5">
-                {Array.from({ length: review.rating }).map((_, j) => (
-                  <Star key={j} className="h-4 w-4 fill-gold-500 text-gold-500" />
-                ))}
-              </div>
-
-              {/* Quote text */}
-              <p className="font-accent text-base italic text-gold-300/80 leading-relaxed line-clamp-4">
-                &ldquo;{review.quote}&rdquo;
-              </p>
-
-              {/* Author + platform */}
-              <div className="mt-4 flex items-center justify-between">
-                <p className="text-sm font-semibold text-gold-500/80">
-                  {review.author}
-                </p>
-                <span className="text-xs uppercase tracking-wider text-gold-500/40">
-                  {review.platform}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 /* ─── Location 3-Column ──────────────────────────────────── */
 function LocationSection() {
   return (
@@ -771,7 +672,6 @@ export function HomePage() {
       <FoodMarqueeStrip />
       <RootedSection />
       <ParallaxQuote />
-      {/* <TestimonialsMarquee /> */}
       <LocationSection />
       <FinalCTA />
     </>
