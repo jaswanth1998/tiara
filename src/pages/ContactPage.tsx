@@ -225,7 +225,7 @@ export function ContactPage() {
               Skip the wait — order online
             </h2>
             <div className="mt-6">
-              <a href={restaurant.orderUrl} className="btn-navy">
+              <a href={restaurant.orderUrl} target="_blank" rel="noopener noreferrer" className="btn-navy">
                 <span>Order Now</span>
               </a>
             </div>

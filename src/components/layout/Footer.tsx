@@ -72,6 +72,8 @@ export function Footer() {
               <li>
                 <a
                   href={restaurant.orderUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm text-gold-300/60 transition-colors hover:text-gold-500"
                 >
                   Order Online
@@ -152,7 +154,7 @@ export function Footer() {
               </form>
             </div>
 
-            <a href={restaurant.orderUrl} className="btn-gold w-full text-center">
+            <a href={restaurant.orderUrl} target="_blank" rel="noopener noreferrer" className="btn-gold w-full text-center">
               <span>Order Online</span>
             </a>
           </div>

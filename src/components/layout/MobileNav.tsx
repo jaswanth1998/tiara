@@ -54,7 +54,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
           </a>
 
           <div className="px-4 pt-4">
-            <a href={restaurant.orderUrl} className="btn-gold w-full text-center">
+            <a href={restaurant.orderUrl} target="_blank" rel="noopener noreferrer" className="btn-gold w-full text-center">
               <span>Order Online</span>
             </a>
           </div>

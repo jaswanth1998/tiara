@@ -7,10 +7,10 @@ export const restaurant: Restaurant = {
   phone: '902-835-0811',
   hours: 'Monday – Sunday, 11:00 AM – 9:00 PM',
   services: ['Dine-in', 'Takeout', 'Delivery', 'Reservations'],
-  orderUrl: '#', // TODO: Replace with Uber Eats / DoorDash link
+  orderUrl: 'https://order.online/store/tiara-kebabs-more-40983959',
   socialMedia: {
-    instagram: '#',
-    facebook: '#',
+    instagram: 'https://www.instagram.com/tiara_kebabs/',
+    facebook: 'https://www.facebook.com/profile.php?id=61576191197083',
   },
 }
 

@@ -91,7 +91,7 @@ function HeroSection() {
             <Link to="/menu" className="btn-gold">
               <span>Explore Our Menu</span>
             </Link>
-            <a href={restaurant.orderUrl} className="btn-gold-outline">
+            <a href={restaurant.orderUrl} target="_blank" rel="noopener noreferrer" className="btn-gold-outline">
               <span>Order Online</span>
             </a>
           </div>
@@ -564,7 +564,7 @@ function FinalCTA() {
             Join us for an unforgettable dining experience
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <a href={restaurant.orderUrl} className="btn-gold">
+            <a href={restaurant.orderUrl} target="_blank" rel="noopener noreferrer" className="btn-gold">
               <span>Order Now</span>
             </a>
             <a

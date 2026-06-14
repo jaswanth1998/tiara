@@ -58,6 +58,8 @@ export function Header() {
               </a>
               <a
                 href={restaurant.orderUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-2.5 text-sm text-gold-300/80 transition-colors duration-300 hover:text-gold-500"
               >
                 <span className="hidden sm:block">

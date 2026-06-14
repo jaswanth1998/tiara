@@ -137,7 +137,7 @@ export function MenuPage() {
               Love what you see?
             </h2>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <a href={restaurant.orderUrl} className="btn-navy">
+              <a href={restaurant.orderUrl} target="_blank" rel="noopener noreferrer" className="btn-navy">
                 <span>Order Online</span>
               </a>
               <a
