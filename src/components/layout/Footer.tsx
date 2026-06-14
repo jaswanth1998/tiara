@@ -1,12 +1,9 @@
 import { Link } from 'react-router-dom'
-import { Phone, MapPin, Clock, Mail, ArrowRight } from 'lucide-react'
+import { Phone, MapPin, Clock } from 'lucide-react'
 import { NAV_LINKS, restaurant } from '@/data/restaurant'
 import { PersianDivider } from '@/components/common/PersianDivider'
-import { useState } from 'react'
 
 export function Footer() {
-  const [email, setEmail] = useState('')
-
   return (
     <footer className="bg-navy-950">
       <PersianDivider className="px-8" />
@@ -121,39 +118,8 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 4: Newsletter + CTA */}
+          {/* Column 4: CTA */}
           <div className="space-y-6">
-            <div>
-              <h3 className="mb-3 font-display text-sm uppercase tracking-widest text-gold-500">
-                Stay Updated
-              </h3>
-              <p className="text-sm text-gold-300/50 leading-relaxed">
-                Subscribe for exclusive offers, new menu items, and special events.
-              </p>
-              <form
-                onSubmit={(e) => { e.preventDefault(); setEmail('') }}
-                className="mt-4 flex gap-2"
-              >
-                <div className="relative flex-1">
-                  <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gold-500/30" />
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Your email"
-                    className="w-full rounded-full border border-navy-600 bg-navy-800/50 py-2.5 pl-10 pr-4 text-sm text-gold-300 placeholder:text-gold-300/30 transition-colors focus:border-gold-500/50 focus:outline-none"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-500 text-navy-900 transition-all duration-300 hover:bg-gold-400 hover:shadow-lg hover:shadow-gold-500/20"
-                  aria-label="Subscribe"
-                >
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-              </form>
-            </div>
-
             <a href={restaurant.orderUrl} target="_blank" rel="noopener noreferrer" className="btn-gold w-full text-center">
               <span>Order Online</span>
             </a>
