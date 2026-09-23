@@ -3,69 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- SEO -->
-    <title>Tiara Kebabs & More — Authentic Persian Restaurant in Bedford, NS</title>
-    <meta name="description" content="Tiara Kebabs & More — Authentic Persian cuisine in Bedford, Nova Scotia. Dine-in, takeout, delivery & reservations. Open daily 11AM–9PM." />
     <meta name="theme-color" content="#0F1B3D" />
-    <link rel="canonical" href="https://tiararestaurant.ca/" />
+
+    <!-- Per-route SEO tags: written for each route by scripts/prerender.mjs at build time and
+         kept in sync by applySeo() (src/lib/seo.ts) on client-side navigation. The source
+         index.html carries homepage defaults for the dev server. -->
+    <!--seo:start-->
+    <title>Tiara Kebabs &amp; More | Persian Restaurant in Bedford, NS</title>
+    <meta name="description" content="Authentic halal Persian kebabs, saffron rice and slow-cooked stews in West Bedford, Halifax. Dine-in, takeout, delivery and reservations. Open daily 11–9." data-seo="description" />
+    <meta name="robots" content="index, follow, max-image-preview:large" data-seo="robots" />
+    <link rel="canonical" href="https://www.tiararestaurant.ca/" data-seo="canonical" />
+    <meta property="og:type" content="website" data-seo="og:type" />
+    <meta property="og:site_name" content="Tiara Kebabs &amp; More" data-seo="og:site_name" />
+    <meta property="og:title" content="Tiara Kebabs &amp; More | Persian Restaurant in Bedford, NS" data-seo="og:title" />
+    <meta property="og:url" content="https://www.tiararestaurant.ca/" data-seo="og:url" />
+    <meta property="og:image" content="https://www.tiararestaurant.ca/images/logo/og-image.jpg" data-seo="og:image" />
+    <meta name="twitter:card" content="summary_large_image" data-seo="twitter:card" />
+    <meta name="twitter:image" content="https://www.tiararestaurant.ca/images/logo/og-image.jpg" data-seo="twitter:image" />
+    <!--seo:end-->
+
+    <!-- Lovelace Text Regular renders every H1 -->
+    <link rel="preload" href="/fonts/lovelace/lovelace-text-regular.otf" as="font" type="font/otf" crossorigin />
 
     <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="32x32" href="/images/logo/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/images/logo/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/images/logo/favicon-180.png" />
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Tiara Kebabs & More — Authentic Persian Restaurant" />
-    <meta property="og:description" content="Experience authentic Persian cuisine in Bedford, Nova Scotia. Signature kebabs, stews, and more." />
-    <meta property="og:image" content="/images/logo/og-image.jpg" />
-    <meta property="og:url" content="https://tiararestaurant.ca/" />
-    <meta property="og:site_name" content="Tiara Kebabs & More" />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Tiara Kebabs & More" />
-    <meta name="twitter:description" content="Authentic Persian cuisine in Bedford, Nova Scotia." />
-    <meta name="twitter:image" content="/images/logo/og-image.jpg" />
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Restaurant",
-      "name": "Tiara Kebabs & More",
-      "description": "Authentic Persian restaurant in Bedford, Nova Scotia offering traditional kebabs, stews, and more.",
-      "url": "https://tiararestaurant.ca",
-      "telephone": "+19028350811",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "640 Brookline Drive, Unit 103",
-        "addressLocality": "Bedford",
-        "addressRegion": "NS",
-        "addressCountry": "CA"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 44.729,
-        "longitude": -63.667
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-        "opens": "11:00",
-        "closes": "21:00"
-      },
-      "servesCuisine": ["Persian", "Iranian", "Middle Eastern"],
-      "priceRange": "$$",
-      "image": "/images/logo/og-image.jpg",
-      "logo": "/images/logo/logo-full.png",
-      "sameAs": []
-    }
-    </script>
   </head>
   <body>
-    <!-- SPA redirect handler for GitHub Pages -->
+    <!-- Legacy SPA redirect handler: decodes old "/?/menu" style links into clean paths -->
     <script type="text/javascript">
       (function(l) {
         if (l.search[1] === '/' ) {

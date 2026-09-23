@@ -1,19 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
+import { useMediaQuery } from './useMediaQuery'
 
 export function useScrollAnimation(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null)
-  const [isVisible, setIsVisible] = useState(false)
+  const [hasIntersected, setHasIntersected] = useState(false)
+  // Respect reduced motion preference: content is shown immediately.
+  const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
 
   useEffect(() => {
-    // Respect reduced motion preference
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    ).matches
-
-    if (prefersReducedMotion) {
-      setIsVisible(true)
-      return
-    }
+    if (prefersReducedMotion) return
 
     const element = ref.current
     if (!element) return
@@ -21,7 +16,7 @@ export function useScrollAnimation(threshold = 0.1) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
-          setIsVisible(true)
+          setHasIntersected(true)
           observer.disconnect()
         }
       },
@@ -30,7 +25,7 @@ export function useScrollAnimation(threshold = 0.1) {
 
     observer.observe(element)
     return () => observer.disconnect()
-  }, [threshold])
+  }, [threshold, prefersReducedMotion])
 
-  return { ref, isVisible }
+  return { ref, isVisible: prefersReducedMotion || hasIntersected }
 }

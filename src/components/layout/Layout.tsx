@@ -1,12 +1,19 @@
 import { Outlet, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Header } from './Header'
 import { Footer } from './Footer'
 
 export function Layout() {
   const { pathname } = useLocation()
+  const isFirstRender = useRef(true)
 
   useEffect(() => {
+    // Scroll to top on route changes only. On the first (hydrating) render the
+    // visitor may already have scrolled the prerendered page.
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
     window.scrollTo(0, 0)
   }, [pathname])
 

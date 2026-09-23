@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useDocumentTitle } from '@/hooks/useDocumentTitle'
+import { useSeo } from '@/hooks/useSeo'
 import { MapPin, Phone, Clock, Send } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -7,9 +7,10 @@ import { SectionHeading } from '@/components/common/SectionHeading'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
 import { PersianDivider } from '@/components/common/PersianDivider'
 import { restaurant } from '@/data/restaurant'
+import { GOOGLE_MAPS_EMBED_URL } from '@/lib/constants'
 
 export function ContactPage() {
-  useDocumentTitle('Contact')
+  useSeo('/contact')
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'sent'>('idle')
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -29,12 +30,13 @@ export function ContactPage() {
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover animate-ken-burns"
           loading="eager"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950/70 via-navy-900/50 to-navy-900" />
         <div className="relative z-10 text-center">
           <div className="animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
             <h1 className="font-display text-4xl font-bold md:text-6xl">
-              <span className="text-gold-gradient">Contact Us</span>
+              <span className="text-gold-gradient">Contact &amp; Reservations</span>
             </h1>
             <p className="mt-3 font-accent text-lg italic text-gold-300/70">
               We&apos;d love to hear from you
@@ -121,8 +123,8 @@ export function ContactPage() {
           <ScrollReveal variant="slide-right" delay={200}>
             <div className="overflow-hidden rounded-2xl shadow-2xl">
               <iframe
-                title="Tiara Kebabs & More location on Google Maps"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2835.1!2d-63.667!3d44.729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s640+Brookline+Drive+Bedford+Nova+Scotia!5e0!3m2!1sen!2sca!4v1"
+                title="Map of Tiara Kebabs & More at 640 Brookline Drive, Unit 103, Bedford, Nova Scotia"
+                src={GOOGLE_MAPS_EMBED_URL}
                 className="h-80 w-full border-0 md:h-full md:min-h-[400px]"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

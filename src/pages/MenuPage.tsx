@@ -1,5 +1,6 @@
 import { useRef } from 'react'
-import { useDocumentTitle } from '@/hooks/useDocumentTitle'
+import { Link } from 'react-router-dom'
+import { useSeo } from '@/hooks/useSeo'
 import { SectionHeading } from '@/components/common/SectionHeading'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
 import { MenuCard } from '@/components/common/MenuCard'
@@ -8,7 +9,7 @@ import { menuCategories } from '@/data/menu'
 import { restaurant } from '@/data/restaurant'
 
 export function MenuPage() {
-  useDocumentTitle('Menu')
+  useSeo('/menu')
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({})
 
   const scrollToCategory = (id: string) => {
@@ -25,15 +26,16 @@ export function MenuPage() {
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover animate-ken-burns"
           loading="eager"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950/70 via-navy-900/40 to-navy-900" />
         <div className="relative z-10 text-center pt-32">
           <div className="animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
             <h1 className="font-display text-4xl font-bold md:text-6xl">
-              <span className="text-gold-gradient">Our Menu</span>
+              <span className="text-gold-gradient">Our Persian Menu</span>
             </h1>
             <p className="mt-3 font-accent text-lg italic text-gold-300/70 md:text-xl">
-              A Journey Through Authentic Persian Cuisine
+              Kebabs, stews &amp; lunch specials in Bedford, Nova Scotia
             </p>
           </div>
         </div>
@@ -147,6 +149,16 @@ export function MenuPage() {
                 <span>Call to Reserve</span>
               </a>
             </div>
+            <p className="mt-6 text-sm text-navy-900/80">
+              Planning a visit?{' '}
+              <Link
+                to="/contact"
+                className="font-semibold text-navy-900 underline underline-offset-4 transition-colors duration-300 hover:text-navy-700"
+              >
+                Reserve a table
+              </Link>{' '}
+              or find our hours and directions.
+            </p>
           </div>
         </ScrollReveal>
       </section>

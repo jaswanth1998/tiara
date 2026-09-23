@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useDocumentTitle } from '@/hooks/useDocumentTitle'
+import { useSeo } from '@/hooks/useSeo'
 import { Flame, Leaf, Heart } from 'lucide-react'
 import { SectionHeading } from '@/components/common/SectionHeading'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
@@ -8,7 +8,7 @@ import { VideoBackground } from '@/components/common/VideoBackground'
 import { restaurant } from '@/data/restaurant'
 
 export function AboutPage() {
-  useDocumentTitle('About')
+  useSeo('/about')
   return (
     <>
       {/* Hero with client interior photo */}
@@ -19,6 +19,7 @@ export function AboutPage() {
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover animate-ken-burns"
           loading="eager"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950/70 via-navy-900/40 to-navy-900" />
         <div className="relative z-10 text-center">
@@ -27,7 +28,7 @@ export function AboutPage() {
               <span className="text-gold-gradient">Our Story</span>
             </h1>
             <p className="mt-3 font-accent text-lg italic text-gold-300/70">
-              The heart behind every dish
+              Persian hospitality in West Bedford, Halifax
             </p>
           </div>
         </div>
@@ -46,10 +47,11 @@ export function AboutPage() {
               />
               <div className="mt-8 space-y-5 text-warm-700 leading-relaxed text-lg">
                 <p>
-                  Tiara Kebabs &amp; More was born from a deep passion for sharing the rich,
-                  vibrant flavors of Persian cuisine with the community of Bedford, Nova Scotia.
-                  Our journey began with a simple belief: that authentic food has the power
-                  to bring people together.
+                  Tiara Kebabs &amp; More is a 100% halal Persian restaurant on
+                  Brookline Drive in West Bedford, born from a deep passion for sharing the rich,
+                  vibrant flavors of Persian cuisine with our neighbours across the Halifax
+                  Regional Municipality. Our journey began with a simple belief: that authentic
+                  food has the power to bring people together.
                 </p>
                 <p>
                   Every dish on our menu tells a story — from the centuries-old recipes
@@ -111,6 +113,13 @@ export function AboutPage() {
               </ScrollReveal>
             ))}
           </div>
+          <ScrollReveal delay={300}>
+            <div className="mt-12 text-center">
+              <Link to="/gallery" className="btn-gold-outline">
+                <span>See more photos in our gallery</span>
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

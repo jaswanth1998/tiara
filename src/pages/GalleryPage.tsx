@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useDocumentTitle } from '@/hooks/useDocumentTitle'
+import { useSeo } from '@/hooks/useSeo'
 import { X, Play } from 'lucide-react'
 import { Dialog, DialogContent } from '@/components/ui/dialog'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
@@ -23,7 +23,7 @@ const VIDEOS = [
 ]
 
 export function GalleryPage() {
-  useDocumentTitle('Gallery')
+  useSeo('/gallery')
   const [activeFilter, setActiveFilter] = useState<Category>('all')
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null)
   const [lightboxAlt, setLightboxAlt] = useState('')
@@ -43,6 +43,7 @@ export function GalleryPage() {
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover animate-ken-burns"
           loading="eager"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950/70 via-navy-900/50 to-navy-900" />
         <div className="relative z-10 text-center">
@@ -51,7 +52,7 @@ export function GalleryPage() {
               <span className="text-gold-gradient">Gallery</span>
             </h1>
             <p className="mt-3 font-accent text-lg italic text-gold-300/70">
-              A visual journey through our kitchen and space
+              Inside Tiara Kebabs &amp; More, Bedford
             </p>
           </div>
         </div>

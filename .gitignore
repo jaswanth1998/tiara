@@ -3,6 +3,7 @@ node_modules/
 
 # Build output
 dist/
+.prerender/
 
 # OS files
 .DS_Store

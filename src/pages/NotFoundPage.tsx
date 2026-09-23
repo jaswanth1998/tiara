@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 import { PersianDivider } from '@/components/common/PersianDivider'
+import { useSeo } from '@/hooks/useSeo'
 
 export function NotFoundPage() {
+  useSeo('/404')
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-6 px-4">
       <div className="animate-fade-in-up text-center" style={{ animationFillMode: 'both' }}>

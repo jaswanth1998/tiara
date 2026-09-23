@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils'
 import { DishImage } from './DishImage'
 import { PriceTag } from './PriceTag'
+import { restaurant } from '@/data/restaurant'
 import type { MenuItem } from '@/types'
 
 export interface MenuCardProps {
@@ -10,6 +11,8 @@ export interface MenuCardProps {
 }
 
 export function MenuCard({ item, variant = 'compact', className }: MenuCardProps) {
+  const imageAlt = `${item.name} at ${restaurant.name}`
+
   if (variant === 'featured' && item.image) {
     return (
       <article
@@ -21,7 +24,7 @@ export function MenuCard({ item, variant = 'compact', className }: MenuCardProps
         <div className="aspect-[4/3] overflow-hidden">
           <DishImage
             src={item.image}
-            alt={item.name}
+            alt={imageAlt}
             className="transition-transform duration-500 group-hover:scale-105"
           />
         </div>
@@ -48,7 +51,7 @@ export function MenuCard({ item, variant = 'compact', className }: MenuCardProps
         )}
       >
         <div className="h-24 w-24 shrink-0 overflow-hidden rounded-md md:h-32 md:w-32">
-          <DishImage src={item.image} alt={item.name} sizes="128px" />
+          <DishImage src={item.image} alt={imageAlt} sizes="128px" />
         </div>
         <div className="flex flex-1 flex-col justify-center">
           <div className="flex items-start justify-between gap-2">

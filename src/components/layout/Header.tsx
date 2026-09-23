@@ -10,18 +10,17 @@ const RIGHT_LINKS = NAV_LINKS.slice(3)
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileOpen, setIsMobileOpen] = useState(false)
   const { pathname } = useLocation()
+  // The mobile menu only counts as open on the page it was opened from, so any
+  // navigation (links, back/forward) closes it without an effect.
+  const [mobileOpenedAt, setMobileOpenedAt] = useState<string | null>(null)
+  const isMobileOpen = mobileOpenedAt === pathname
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 60)
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  useEffect(() => {
-    setIsMobileOpen(false)
-  }, [pathname])
 
   return (
     <>
@@ -143,7 +142,7 @@ export function Header() {
             <button
               type="button"
               className="inline-flex h-10 w-10 items-center justify-center rounded-full text-gold-400 transition-colors duration-300 hover:bg-gold-500/10 hover:text-gold-500 lg:hidden"
-              onClick={() => setIsMobileOpen(true)}
+              onClick={() => setMobileOpenedAt(pathname)}
               aria-label="Open menu"
             >
               <Menu className="h-6 w-6" />
@@ -152,7 +151,7 @@ export function Header() {
         </div>
       </header>
 
-      <MobileNav isOpen={isMobileOpen} onClose={() => setIsMobileOpen(false)} />
+      <MobileNav isOpen={isMobileOpen} onClose={() => setMobileOpenedAt(null)} />
     </>
   )
 }

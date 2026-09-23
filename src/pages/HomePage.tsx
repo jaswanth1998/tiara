@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 import {
   MapPin, Phone, Clock, ChevronDown,
   Flame, Leaf, Heart, Star,
@@ -12,7 +11,9 @@ import { VideoBackground } from '@/components/common/VideoBackground'
 import { FoodMarquee } from '@/components/common/FoodMarquee'
 import { ParallaxSection } from '@/components/common/ParallaxSection'
 import { useParallax } from '@/hooks/useParallax'
+import { useSeo } from '@/hooks/useSeo'
 import { restaurant } from '@/data/restaurant'
+import { GOOGLE_MAPS_EMBED_URL } from '@/lib/constants'
 
 /* ─── Hero (Amrit-style: split typography + rating badge) ──── */
 function HeroSection() {
@@ -29,6 +30,7 @@ function HeroSection() {
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover"
         loading="eager"
+        fetchPriority="high"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-navy-950/80 via-navy-900/50 to-navy-950/90" />
 
@@ -53,7 +55,7 @@ function HeroSection() {
         {/* Split headline — Amrit style dramatic lines */}
         <div className="animate-fade-in-up" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
           <h1 className="font-display font-bold tracking-tight">
-            <span className="block text-5xl text-gold-gradient md:text-7xl lg:text-8xl">Tiara</span>
+            <span className="block text-5xl text-gold-gradient md:text-7xl lg:text-8xl">Tiara</span>{" "}
             <span className="block text-4xl text-gold-gradient md:text-6xl lg:text-7xl mt-1">Kebabs &amp; More</span>
           </h1>
         </div>
@@ -61,27 +63,31 @@ function HeroSection() {
         {/* Tagline */}
         <div className="animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'both' }}>
           <p className="mt-5 font-accent text-xl italic text-gold-300/90 md:text-2xl lg:text-3xl">
-            A Journey Through Authentic Persian Cuisine
+            {restaurant.tagline}
           </p>
         </div>
 
         {/* Location + Established line — Amrit style */}
         <div className="animate-fade-in-up" style={{ animationDelay: '1s', animationFillMode: 'both' }}>
           <p className="mt-3 text-sm uppercase tracking-[0.25em] text-gold-500/60">
-            Serving Bedford, Nova Scotia &bull; Est. 2024
+            Serving Bedford &amp; Halifax &bull; Est. 2024
           </p>
         </div>
 
         {/* Google rating badge — Amrit style */}
         <div className="animate-fade-in-up" style={{ animationDelay: '1.1s', animationFillMode: 'both' }}>
           <div className="mx-auto mt-6 inline-flex items-center gap-3 rounded-full border border-gold-500/30 bg-navy-900/60 px-5 py-2.5 backdrop-blur-sm">
-            <div className="flex gap-0.5">
+            <div className="flex gap-0.5" aria-hidden="true">
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star key={i} className="h-4 w-4 fill-gold-500 text-gold-500" />
               ))}
             </div>
-            <span className="text-sm font-semibold text-gold-300">4.8/5</span>
-            <span className="text-xs text-gold-300/60">&mdash; Loved by our guests</span>
+            <span className="text-sm font-semibold text-gold-300">
+              {restaurant.googleRating.value} &#9733; on Google
+            </span>
+            <span className="text-xs text-gold-300/60">
+              &mdash; {restaurant.googleRating.count} reviews
+            </span>
           </div>
         </div>
 
@@ -221,7 +227,7 @@ function SignaturePlatesGrid() {
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img
                     src={dish.img}
-                    alt={dish.name}
+                    alt={`${dish.name} at ${restaurant.name}`}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     loading="lazy"
                   />
@@ -248,7 +254,7 @@ function SignaturePlatesGrid() {
         <ScrollReveal delay={600}>
           <div className="mt-12 text-center">
             <Link to="/menu" className="btn-navy">
-              <span>View Full Menu</span>
+              <span>See the full Persian menu</span>
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -429,9 +435,9 @@ function RootedSection() {
               </h2>
               <div className="h-px w-20 bg-gold-500/40" />
               <p className="text-lg leading-relaxed text-gold-300/80">
-                Nestled in Bedford&rsquo;s Brookline Drive, Tiara Kebabs &amp; More was born from
-                a simple dream: to share the warmth of Persian hospitality with
-                the Nova Scotia community.
+                Nestled on Brookline Drive in West Bedford, Tiara Kebabs &amp; More was born from
+                a simple dream: to share the warmth of Persian hospitality with our
+                neighbours across the Halifax Regional Municipality.
               </p>
               <p className="leading-relaxed text-gold-300/70">
                 Our doors are open seven days a week, welcoming families, friends,
@@ -441,11 +447,11 @@ function RootedSection() {
               </p>
               <div className="flex flex-col gap-4 pt-2 sm:flex-row">
                 <Link to="/about" className="btn-gold">
-                  <span>Learn More</span>
+                  <span>Read Our Story</span>
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link to="/gallery" className="btn-gold-outline">
-                  <span>View Gallery</span>
+                  <span>View Photo Gallery</span>
                 </Link>
               </div>
             </div>
@@ -470,8 +476,8 @@ function LocationSection() {
           <ScrollReveal variant="fade-up" delay={0}>
             <div className="overflow-hidden rounded-2xl shadow-2xl border border-navy-700/50 md:col-span-1 h-full min-h-[280px]">
               <iframe
-                title="Tiara Kebabs & More location on Google Maps"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2835.1!2d-63.667!3d44.729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s640+Brookline+Drive+Bedford+Nova+Scotia!5e0!3m2!1sen!2sca!4v1"
+                title="Map of Tiara Kebabs & More at 640 Brookline Drive, Unit 103, Bedford, Nova Scotia"
+                src={GOOGLE_MAPS_EMBED_URL}
                 className="h-full w-full border-0 min-h-[280px]"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -621,7 +627,7 @@ function ParallaxStats() {
           { value: '50+', label: 'Menu Items' },
           { value: '100%', label: 'Halal Certified' },
           { value: '7', label: 'Days a Week' },
-          { value: '5★', label: 'Customer Rating' },
+          { value: `${restaurant.googleRating.value}★`, label: `${restaurant.googleRating.count} Google Reviews` },
         ].map((stat, i) => (
           <ScrollReveal key={stat.label} delay={i * 150} variant="scale">
             <div className="text-center">
@@ -659,7 +665,7 @@ function ParallaxQuote() {
 
 /* ─── HomePage ───────────────────────────────────────────── */
 export function HomePage() {
-  useDocumentTitle('')
+  useSeo('/')
   return (
     <>
       <HeroSection />

@@ -78,7 +78,7 @@ export function Footer() {
               </li>
             </ul>
 
-            <div className="mt-8 space-y-3">
+            <address className="mt-8 space-y-3 not-italic">
               <a
                 href={`tel:${restaurant.phone.replace(/-/g, '')}`}
                 className="flex items-center gap-2 text-sm text-gold-300/60 transition-colors hover:text-gold-500"
@@ -93,9 +93,13 @@ export function Footer() {
                 className="flex items-start gap-2 text-sm text-gold-300/60 transition-colors hover:text-gold-500"
               >
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-500/50" />
-                {restaurant.address}
+                <span>
+                  {restaurant.streetAddress}
+                  <br />
+                  {restaurant.locality}, {restaurant.region} {restaurant.postalCode}
+                </span>
               </a>
-            </div>
+            </address>
           </div>
 
           {/* Column 3: Hours Breakdown */}
@@ -128,7 +132,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-14 border-t border-navy-800 pt-6 flex flex-col items-center gap-3 md:flex-row md:justify-between">
-          <p className="text-xs text-gold-300/30">
+          <p className="text-xs text-gold-300/30" suppressHydrationWarning>
             &copy; {new Date().getFullYear()} {restaurant.name}. All rights reserved.
           </p>
           <p className="text-xs text-gold-300/30">

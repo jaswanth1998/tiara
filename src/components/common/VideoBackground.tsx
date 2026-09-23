@@ -45,7 +45,7 @@ export function VideoBackground({ webmSrc, mp4Src, posterSrc, className }: Video
       muted
       loop
       playsInline
-      preload="auto"
+      preload="metadata"
       poster={posterSrc}
       onLoadedData={() => setIsLoaded(true)}
       className={cn(
